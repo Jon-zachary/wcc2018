@@ -1,32 +1,55 @@
+@font-face {
+  font-family: Dosis;
+  src: url('https://fonts.googleapis.com/css?family=Dosis');
+}
+* {
+  box-sizing: border-box;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #0d4777;
+}
+.CountDown-container {
+  display: flex;
+  justify-content: space-between;
+  font-family: Dosis, sans-serif;
+  font-size: 55px;
   color: white;
+  background-color: black;
 }
 
-.App-link {
-  color: #61dafb;
+.TimeUnit {
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.TimeName {
+  font-size: 20px;
+  color: #5e5e5e;
+  font-weight: bolder;
+}
+
+.Avi {
+  height: 360px;
+  width: 640px;
+}
+
+.Title {
+  text-align: center;
+}
+
+.Magnus {
+  float: left;
+  text-align: center;
+}
+
+.Fabi {
+  float: right;
+  text-align: center;
 }
