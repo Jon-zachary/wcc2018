@@ -2,6 +2,7 @@
   font-family: Dosis;
   src: url('https://fonts.googleapis.com/css?family=Dosis');
 }
+
 * {
   box-sizing: border-box;
 }
@@ -13,6 +14,7 @@
   justify-content: center;
   background-color: #0d4777;
 }
+
 .CountDown-container {
   display: flex;
   justify-content: space-between;
