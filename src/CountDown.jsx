@@ -42,8 +42,6 @@ class CountDown extends Component {
     let { days, hours, minutes, seconds } = time;
 
     return(
-      <div>
-      <h2> FIDE World Chess Championship Match 2018 starts in </h2>
       <div className="CountDown-container">
         <TimeUnit number={days} unitName="days" />
         <span> : </span>
@@ -52,7 +50,6 @@ class CountDown extends Component {
         <TimeUnit number={minutes} unitName="minutes" />
         <span> : </span>
         <TimeUnit number={seconds} unitName="seconds" />
-      </div>
       </div>
     )
   }

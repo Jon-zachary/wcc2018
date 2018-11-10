@@ -37,21 +37,16 @@
   font-weight: bolder;
 }
 
-.Avi {
-  height: 360px;
-  width: 640px;
-}
-
 .Title {
   text-align: center;
 }
 
-.Magnus {
-  float: left;
-  text-align: center;
+.Player-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
-.Fabi {
-  float: right;
-  text-align: center;
+.Player {
+  flex-basis: 33%;
 }
