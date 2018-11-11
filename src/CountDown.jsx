@@ -40,17 +40,19 @@ class CountDown extends Component {
       time[k] = this.formatNumber(time[k]);
     }
     let { days, hours, minutes, seconds } = time;
-
+    const hasStarted = (diff < 0);
+    const timer = <div className="CountDown-container">
+      <TimeUnit number={days} unitName="days" />
+      <span> : </span>
+      <TimeUnit number={hours} unitName="hours" />
+      <span> : </span>
+      <TimeUnit number={minutes} unitName="minutes" />
+      <span> : </span>
+      <TimeUnit number={seconds} unitName="seconds" />
+    </div>
+    const started = <p> It's happening </p>
     return(
-      <div className="CountDown-container">
-        <TimeUnit number={days} unitName="days" />
-        <span> : </span>
-        <TimeUnit number={hours} unitName="hours" />
-        <span> : </span>
-        <TimeUnit number={minutes} unitName="minutes" />
-        <span> : </span>
-        <TimeUnit number={seconds} unitName="seconds" />
-      </div>
+      hasStarted ? started : timer
     )
   }
 

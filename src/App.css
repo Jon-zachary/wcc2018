@@ -12,7 +12,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #0d4777;
+  background-color: #d0c1ae;
 }
 
 .CountDown-container {
@@ -38,15 +38,77 @@
 }
 
 .Title {
-  text-align: center;
-}
-
-.Player-wrapper {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  flex: 1;
+  order: 1;
+  font-size: 3em;
+  justify-content: center;
+  align-items: center;
 }
 
 .Player {
-  flex-basis: 33%;
+  order: 1;
+  margin: 0 5%;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  font-size: 1em;
+  margin: 0 1%;
+}
+
+.Header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: slategrey;
+  justify-content: space-around;
+}
+
+.Board {
+  display:flex;
+  align-items: flex-end;
+}
+
+.movelist {
+  margin: 6%;
+  padding-left: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 200px;
+  height: 300px;
+  overflow: scroll;
+  background-color: #f5f2e9;
+}
+
+.link-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+.link-button:hover,
+.link-button:focus {
+text-decoration: none;
+}
+
+.game-header {
+  text-align: center;
+}
+
+.board-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
