@@ -3,6 +3,7 @@ import Chess from 'chess.js';
 import Chessboard from 'chessboardjsx';
 import game1 from './game1';
 import game2 from './game2';
+import game3 from './game3';
 
 class Board extends Component {
 
@@ -29,6 +30,7 @@ class Board extends Component {
     const gameObj = {
       game1,
       game2,
+      game3,
     }
     game.load_pgn(gameObj[pgnString]);
     // game.reset();
@@ -56,6 +58,11 @@ class Board extends Component {
     if(this.props.gameNumber === 2) {
       const dummyGame = new Chess();
       dummyGame.load_pgn(game2);
+      return dummyGame.history();
+    }
+    if(this.props.gameNumber === 3) {
+      const dummyGame = new Chess();
+      dummyGame.load_pgn(game3);
       return dummyGame.history();
     }
   }
@@ -114,7 +121,7 @@ class Board extends Component {
             if(i % 2 === 0) {
             return (
               <span key={i}>
-                <span className="link-button" onClick={(e) => this.setState({currentMove: i})}>{Math.floor(i / 2) + 1}: {move}</span>
+                <span>{Math.floor(i / 2) + 1}: </span><span className="link-button" onClick={(e) => this.setState({currentMove: i})}>{move}</span>
                 <span>&nbsp;&nbsp;</span>
                 <span className="link-button" onClick={(e) => this.setState({currentMove: i + 1})}>{self[i + 1]}</span>
               </span>

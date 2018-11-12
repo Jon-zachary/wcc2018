@@ -14,8 +14,9 @@ class App extends Component {
       <div className="App">
         <Header />
         <div className="multi-board">
-        <Board gameNumber={1}/>
-        <Board gameNumber={2}/>
+        <Board gameNumber={1} />
+        <Board gameNumber={2} />
+        <Board gameNumber={3} />
         </div>
       </div>
     );
