@@ -13,8 +13,10 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <div className="multi-board">
         <Board gameNumber={1}/>
         <Board gameNumber={2}/>
+        </div>
       </div>
     );
   }

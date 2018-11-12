@@ -3,11 +3,13 @@ import Chess from 'chess.js';
 import Chessboard from 'chessboardjsx';
 import game1 from './game1';
 import game2 from './game2';
+
 class Board extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
+      game: null,
       currentMove: null,
       moves: this.getMovelist(this.props.gameNumber),
       positions: this.allPositions(),
@@ -20,10 +22,24 @@ class Board extends Component {
     this.handleFinal = this.handleFinal.bind(this);
   }
 
+  componentDidMount() {
+    console.log(this)
+    const game = new Chess();
+    const pgnString = `game${this.props.gameNumber}`
+    const gameObj = {
+      game1,
+      game2,
+    }
+    game.load_pgn(gameObj[pgnString]);
+    // game.reset();
+    this.setState({
+      game,
+    })
+  }
+
   allPositions() {
     const game = new Chess();
     const moves = this.getMovelist(this.props.gameNumber);
-    console.log(moves);
     const positions = moves.map((move, i) => {
       game.move(move);
       return game.fen();
@@ -97,7 +113,7 @@ class Board extends Component {
           {this.state.moves.map((move, i , self) => {
             if(i % 2 === 0) {
             return (
-              <span>
+              <span key={i}>
                 <span className="link-button" onClick={(e) => this.setState({currentMove: i})}>{Math.floor(i / 2) + 1}: {move}</span>
                 <span>&nbsp;&nbsp;</span>
                 <span className="link-button" onClick={(e) => this.setState({currentMove: i + 1})}>{self[i + 1]}</span>
@@ -111,13 +127,15 @@ class Board extends Component {
         <div className = "board-container">
         <h1 className="game-header">Game {this.props.gameNumber}</h1>
         <Chessboard
-          draggable={false}
+          id={this.props.gameNumber}
+          draggable={true}
           position={fen}
           boardStyle={{
             marginBottom: "5px",
           }}
           transitionDuration={0}
           orientation={this.state.orientation}
+          getPostion={position => console.log(position)}
           undo={true}
           width={300}
           />
@@ -126,7 +144,6 @@ class Board extends Component {
             <button className="dec" onClick={this.handleDec}> - </button>
             <button className="reset" onClick={this.handleReset}>Reset</button>
             <button className="flipBoard" onClick={this.handleFlip}>Flip</button>
-            <button className="final" onClick={this.handleFinal}>Final</button>
           </div>
         </div>
       </div>
