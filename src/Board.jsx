@@ -12,7 +12,7 @@ class Board extends Component {
     this.state = {
       game: null,
       currentMove: null,
-      moves: this.getMovelist(this.props.gameNumber),
+      moves: [],
       positions: this.allPositions(),
       orientation: 'white',
     }
@@ -33,9 +33,11 @@ class Board extends Component {
       game3,
     }
     game.load_pgn(gameObj[pgnString]);
-    // game.reset();
+    const moves = game.history();
+    console.log(moves);
     this.setState({
       game,
+      moves,
     })
   }
 
