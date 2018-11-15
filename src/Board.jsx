@@ -6,6 +6,7 @@ import game2 from './game2';
 import game3 from './game3';
 import game4 from './game4';
 
+
 class Board extends Component {
 
   constructor(props) {
@@ -21,7 +22,8 @@ class Board extends Component {
     this.handleFlip = this.handleFlip.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.handleFinal = this.handleFinal.bind(this);
-    // this.handleMoveClick = this.handleMoveClick.bind(this);
+    this.handleEval = this.handleEval.bind(this);
+    this.handleStop = this.handleStop.bind(this);
   }
 
   componentDidMount() {
@@ -42,6 +44,27 @@ class Board extends Component {
     })
   }
 
+  handleEval(e) {
+    const game = new Chess();
+    const moves = this.state.moves.slice(0, this.state.currentMove);
+    moves.forEach(move => game.move(move))
+    const fen = game.fen();
+    console.log(fen);
+    const sf = eval('stockfish');
+    sf.onmessage = (evt) => {
+      if(evt.data.includes('pvSan')){
+      const pvSan = evt.data.split("pvSan");
+      console.log(pvSan);
+      }
+    }
+    sf.postMessage(`position fen ${fen}`);
+    sf.postMessage(`go infinite`);
+  }
+
+  handleStop(e) {
+    const sf = eval('stockfish');
+    sf.postMessage('stop');
+  }
 
  handleInc(e) {
     const currentMove = this.state.currentMove + 1;
@@ -158,6 +181,8 @@ class Board extends Component {
             <button className="reset" onClick={this.handleReset}>Reset</button>
             <button className="flipBoard" onClick={this.handleFlip}>Flip</button>
             <button className="final" onClick={this.handleFinal}>Final</button>
+            <button className="eval" onClick={this.handleEval}>Eval</button>
+            <button className="stop" onClick={this.handleStop}>Stop</button>
           </div>
         </div>
       </div>
