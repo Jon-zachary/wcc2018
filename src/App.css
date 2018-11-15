@@ -39,12 +39,19 @@
 
 .Title {
   display: flex;
+  flex-direction: column;
   flex: 1;
   order: 1;
   font-size: 3em;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   text-align: center;
+}
+
+ nav {
+  display: flex;
+  margin-top: 50px;
+  margin-bottom: 10px;
 }
 
 .Player {
@@ -59,7 +66,7 @@
 }
 
 button {
-  font-size: 1em;
+  font-size: 1rem;
   margin: 0 1%;
 }
 
@@ -122,4 +129,8 @@ text-decoration: none;
 .multi-board {
   display: flex;
   flex-wrap:wrap;
+}
+
+.highlight {
+  background-color: yellow;
 }

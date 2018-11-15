@@ -4,6 +4,7 @@ import Chessboard from 'chessboardjsx';
 import game1 from './game1';
 import game2 from './game2';
 import game3 from './game3';
+import game4 from './game4';
 
 class Board extends Component {
 
@@ -11,9 +12,8 @@ class Board extends Component {
     super(props);
     this.state = {
       game: null,
-      currentMove: null,
+      currentMove: 0,
       moves: [],
-      positions: this.allPositions(),
       orientation: 'white',
     }
     this.handleInc = this.handleInc.bind(this);
@@ -21,68 +21,48 @@ class Board extends Component {
     this.handleFlip = this.handleFlip.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.handleFinal = this.handleFinal.bind(this);
+    // this.handleMoveClick = this.handleMoveClick.bind(this);
   }
 
   componentDidMount() {
-    console.log(this)
     const game = new Chess();
     const pgnString = `game${this.props.gameNumber}`
     const gameObj = {
       game1,
       game2,
       game3,
+      game4,
     }
     game.load_pgn(gameObj[pgnString]);
     const moves = game.history();
-    console.log(moves);
+    game.reset()
     this.setState({
       game,
       moves,
     })
   }
 
-  allPositions() {
+
+ handleInc(e) {
+    const currentMove = this.state.currentMove + 1;
     const game = new Chess();
-    const moves = this.getMovelist(this.props.gameNumber);
-    const positions = moves.map((move, i) => {
-      game.move(move);
-      return game.fen();
+    const moves = this.state.moves.slice(0, currentMove);
+    moves.forEach(move => game.move(move))
+    this.setState({
+      game,
+      currentMove,
     })
-    return positions;
-  }
-
-  getMovelist(gameNumber) {
-    if(this.props.gameNumber === 1) {
-    const dummyGame = new Chess();
-    dummyGame.load_pgn(game1);
-    return dummyGame.history();
-    }
-    if(this.props.gameNumber === 2) {
-      const dummyGame = new Chess();
-      dummyGame.load_pgn(game2);
-      return dummyGame.history();
-    }
-    if(this.props.gameNumber === 3) {
-      const dummyGame = new Chess();
-      dummyGame.load_pgn(game3);
-      return dummyGame.history();
-    }
-  }
-
-  handleInc(e) {
-    this.setState (state => {
-      return (
-        {currentMove: (state.currentMove !== null) ? state.currentMove + 1 : 0}
-      )
-    });
   }
 
   handleDec(e) {
-    this.setState (state => {
-      return (
-        {currentMove: state.currentMove - 1}
-      )
-    });
+    const currentMove = this.state.currentMove - 1;
+    const game = new Chess();
+    const moves = this.state.moves.slice(0, currentMove);
+    moves.forEach(move => game.move(move))
+    this.setState({
+      game,
+      currentMove,
+    })
   }
 
 
@@ -94,14 +74,25 @@ class Board extends Component {
   }
 
   handleReset(e) {
+    const game = new Chess();
     this.setState({
-      currentMove: null,
+      game,
+      currentMove: 0,
     })
   }
 
   handleFinal(e) {
+    const game = new Chess();
+    const pgnString = `game${this.props.gameNumber}`
+    const gameObj = {
+      game1,
+      game2,
+      game3,
+      game4,
+    }
+    game.load_pgn(gameObj[pgnString]);
     this.setState({
-      currentMove: this.state.positions.length - 1,
+      game
     })
   }
 
@@ -111,25 +102,38 @@ class Board extends Component {
     return result;
   }
 
+  handleMoveClick(evt, index) {
+    evt.target.classList.add('highlight')
+    console.log(evt.target.classList)
+    const game = new Chess();
+    const moves = this.state.moves.slice(0, index);
+    moves.forEach(move => game.move(move))
+    this.setState({
+      game,
+      currentMove: index
+    })
+  }
+
 
   render() {
-    const fen = (this.state.currentMove !== null) ? this.state.positions[this.state.currentMove] :
-    'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
+    const fen = (this.state.game) ? this.state.game.fen() : new Chess().fen();
     return (
       <div>
       <div className="Board">
         <div className="movelist">
           {this.state.moves.map((move, i , self) => {
+            const white = i + 1;
+            const black = i + 2;
             if(i % 2 === 0) {
             return (
               <span key={i}>
-                <span>{Math.floor(i / 2) + 1}: </span><span className="link-button" onClick={(e) => this.setState({currentMove: i})}>{move}</span>
+                <span>{Math.floor(i / 2) + 1}: </span><span className="link-button" onClick={(evt) => this.handleMoveClick(evt,white)}>{move}</span>
                 <span>&nbsp;&nbsp;</span>
-                <span className="link-button" onClick={(e) => this.setState({currentMove: i + 1})}>{self[i + 1]}</span>
+                <span className="link-button" onClick={(evt) => this.handleMoveClick(evt,black)}>{self[i + 1]}</span>
               </span>
               )
             }
-
+            return undefined;
           })}
           <span>{this.getResult()}</span>
         </div>
@@ -153,6 +157,7 @@ class Board extends Component {
             <button className="dec" onClick={this.handleDec}> - </button>
             <button className="reset" onClick={this.handleReset}>Reset</button>
             <button className="flipBoard" onClick={this.handleFlip}>Flip</button>
+            <button className="final" onClick={this.handleFinal}>Final</button>
           </div>
         </div>
       </div>
