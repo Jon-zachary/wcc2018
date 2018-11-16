@@ -134,3 +134,18 @@ text-decoration: none;
 .highlight {
   background-color: yellow;
 }
+
+.currentDepth {
+  text-align: center;
+  margin: 0;
+}
+
+.depthLabel {
+  margin: 33%;
+}
+
+.evaluation {
+  height: 50px;
+  width: 100px;
+  overflow: scroll;
+}

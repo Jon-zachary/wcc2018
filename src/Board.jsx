@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Chess from 'chess.js';
 import Chessboard from 'chessboardjsx';
 import Eval from './Eval.jsx'
+import Slider from './Slider.jsx';
 import game1 from './game1';
 import game2 from './game2';
 import game3 from './game3';
@@ -18,9 +19,8 @@ class Board extends Component {
       moves: [],
       orientation: 'white',
       isEval: false,
-      worker: window['stockfish'],
-      sfEval: 'evaluating position',
       evalDepth: 5,
+      fen: null,
     }
     this.handleInc = this.handleInc.bind(this);
     this.handleDec = this.handleDec.bind(this);
@@ -28,8 +28,7 @@ class Board extends Component {
     this.handleReset = this.handleReset.bind(this);
     this.handleFinal = this.handleFinal.bind(this);
     this.handleEval = this.handleEval.bind(this);
-    this.handleStop = this.handleStop.bind(this);
-    this.updateEval = this.updateEval.bind(this);
+    this.handleSlide = this.handleSlide.bind(this);
   }
 
   componentDidMount() {
@@ -44,49 +43,31 @@ class Board extends Component {
     game.load_pgn(gameObj[pgnString]);
     const moves = game.history();
     game.reset()
+    const fen = game.fen();
     this.setState({
       game,
       moves,
-    })
-  }
-
-  updateEval(e) {
-    this.setState({
-      sfEval: e,
+      fen,
     })
   }
 
   handleEval(e) {
     this.setState({
-      isEval: !this.state.isEval
+      isEval: !this.state.isEval,
     });
-    // const game = new Chess();
-    // const moves = this.state.moves.slice(0, this.state.currentMove);
-    // moves.forEach(move => game.move(move))
-    // const fen = game.fen();
-    // const sf = this.state.worker;
-    // sf.onmessage = (evt) => {
-    //   if(evt.data.includes('pvSan')){
-    //   const pvSan = evt.data.split("pvSan");
-    //   console.log(pvSan);
-    //   }
-    // }
-    // sf.postMessage(`position fen ${fen}`);
-    // sf.postMessage(`go infinite`);
   }
 
-  handleStop(e) {
-    // sf.postMessage('stop');
-  }
 
  handleInc(e) {
     const currentMove = this.state.currentMove + 1;
     const game = new Chess();
     const moves = this.state.moves.slice(0, currentMove);
     moves.forEach(move => game.move(move))
+    const fen = game.fen();
     this.setState({
       game,
       currentMove,
+      fen,
     })
   }
 
@@ -95,12 +76,19 @@ class Board extends Component {
     const game = new Chess();
     const moves = this.state.moves.slice(0, currentMove);
     moves.forEach(move => game.move(move))
+    const fen = game.fen();
     this.setState({
       game,
       currentMove,
+      fen,
     })
   }
 
+  handleSlide(e) {
+    this.setState({
+      evalDepth: e.target.value,
+    })
+  }
 
   handleFlip(e) {
     const side = (this.state.orientation === 'white') ? 'black' : 'white'
@@ -111,9 +99,11 @@ class Board extends Component {
 
   handleReset(e) {
     const game = new Chess();
+    const fen = game.fen();
     this.setState({
       game,
       currentMove: 0,
+      fen,
     })
   }
 
@@ -127,8 +117,10 @@ class Board extends Component {
       game4,
     }
     game.load_pgn(gameObj[pgnString]);
+    const fen = game.fen();
     this.setState({
-      game
+      game,
+      fen
     })
   }
 
@@ -144,21 +136,16 @@ class Board extends Component {
     const game = new Chess();
     const moves = this.state.moves.slice(0, index);
     moves.forEach(move => game.move(move))
+    const fen = game.fen()
     this.setState({
       game,
-      currentMove: index
+      currentMove: index,
+      fen,
     })
   }
 
 
   render() {
-    const fen = (this.state.game) ? this.state.game.fen() : new Chess().fen();
-    const sfEval = (this.state.isEval) ?
-    <Eval fen={fen}
-    sf={this.state.worker}
-    updateEval={this.updateEval}
-    sfEval={this.state.sfEval}
-    depth={this.state.evalDepth}/> : "";
     return (
       <div>
       <div className="Board">
@@ -181,17 +168,19 @@ class Board extends Component {
           <span>{this.getResult()}</span>
         </div>
         <div className = "board-container">
-        <input type="range" name="depth"
-               max="25" min="5"step="1"
-               defaultValue="5"
-                >
-        </input>
-        <label for="depth">Eval Depth</label>
+
+        <Slider
+          min={5}
+          max={25}
+          step={1}
+          onChange={this.handleSlide}
+          val={this.state.evalDepth}
+          />
         <h1 className="game-header">Game {this.props.gameNumber}</h1>
         <Chessboard
           id={this.props.gameNumber}
           draggable={true}
-          position={fen}
+          position={this.state.fen}
           boardStyle={{
             marginBottom: "5px",
           }}
@@ -208,9 +197,12 @@ class Board extends Component {
             <button className="flipBoard" onClick={this.handleFlip}>Flip</button>
             <button className="final" onClick={this.handleFinal}>Final</button>
             <button className="eval" onClick={this.handleEval}>Eval</button>
-            <button className="stop" onClick={this.handleStop}>Stop</button>
           </div>
-          {sfEval}
+            <Eval
+            fen={this.state.fen}
+            depth={this.state.evalDepth}
+            isEval={this.state.isEval}
+            />
         </div>
       </div>
     </div>

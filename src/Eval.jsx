@@ -1,21 +1,38 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Eval = (props) => {
-   props.sf.onmessage = (evt) => {
-     let res = evt.data;
-     if(res.startsWith(`info depth ${props.depth}`)) {
-       props.updateEval(res);
-       props.sf.terminate();
+class Eval extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      res: null,
+      fen: props.fen,
+      depth: props.depth,
+      }
+    }
+
+   componentDidUpdate(prevProps) {
+     if ((this.props.fen !== prevProps.fen) || (this.props.depth !== prevProps.depth)) {
+       const sf = window['stockfish'];
+       sf.postMessage(`position fen ${this.props.fen}`)
+       sf.postMessage(`go depth ${this.props.depth}`)
+       sf.onmessage = (evt) => {
+         this.setState({
+           res: evt.data
+         })
+       }
      }
-  }
-  props.sf.postMessage('ucinewgame')
-  props.sf.postMessage(`position fen ${props.fen}`)
-  props.sf.postMessage(`go depth 5`)
+   }
+
+  render() {
+  if(this.props.isEval){
   return(
     <div className="evaluation">
-      evaluation: {props.sfEval}
+      evaluation: {this.state.res}
     </div>
-  )
+    )
+  }
+  return <div></div>
+  }
 }
 
 export default Eval;
