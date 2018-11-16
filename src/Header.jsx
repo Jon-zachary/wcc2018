@@ -22,13 +22,6 @@ const Header = (props) => {
       src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Fabiano_Caruana_2013%282%29.jpg/220px-Fabiano_Caruana_2013%282%29.jpg"
       name="Fabiano Caruana"
       />
-    {// <nav>
-    //   <button className="nav-button">Game 1</button>
-    //   <button className="nav-button">Game 2</button>
-    //   <button className="nav-button">Game 3</button>
-    //   <button className="nav-button">Game 4</button>
-    // </nav>
-  }
   </div>
   )
 }
