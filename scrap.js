@@ -24,22 +24,3 @@ function msToDate(ms) {
 
 
 console.log(msToDate(time));
-
-<div className="movelist">
-  {this.state.moves.map((move, i , self) => {
-    const white = i + 1;
-    const black = i + 2;
-    const mvNum = Math.floor(i / 2) + 1
-    if(i % 2 === 0) {
-    return (
-      <span key={i}>
-        <span>{mvNum}: </span><span className="link-button" onClick={(evt) => this.handleMoveClick(evt,white)}>{move}</span>
-        <span>&nbsp;&nbsp;</span>
-        <span className="link-button" onClick={(evt) => this.handleMoveClick(evt,black)}>{self[i + 1]}</span>
-      </span>
-      )
-    }
-    return undefined;
-  })}
-  <span>{this.getResult()}</span>
-</div>

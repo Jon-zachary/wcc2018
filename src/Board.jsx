@@ -133,18 +133,20 @@ class Board extends Component {
   }
 
   handleMoveClick(evt, index) {
-    evt.target.classList.add('highlight')
-    console.log(evt.target.classList)
+    // evt.target.classList.add('highlight')
+    console.log(index)
     const game = new Chess();
     const moves = this.state.moves.slice(0, index);
     moves.forEach(move => game.move(move))
     const fen = game.fen()
-    this.setState({
+    this.setState((prevState) => {
+      return ({
       game,
       currentMove: index,
       fen,
     })
-  }
+  })
+}
 
 
   render() {
@@ -155,6 +157,7 @@ class Board extends Component {
           moves={this.state.moves}
           handleMoveClick={this.handleMoveClick}
           getResult={this.getResult}
+          currentMove={this.state.currentMove}
         />
         <Eval
         fen={this.state.fen}
@@ -184,12 +187,12 @@ class Board extends Component {
           width={300}
           />
           <div className="button-wrapper">
-            <button className="inc" onClick={this.handleInc}> + </button>
-            <button className="dec" onClick={this.handleDec}> - </button>
-            <button className="reset" onClick={this.handleReset}>Reset</button>
-            <button className="flipBoard" onClick={this.handleFlip}>Flip</button>
-            <button className="final" onClick={this.handleFinal}>Final</button>
-            <button className="eval" onClick={this.handleEval}>Eval</button>
+            <button onClick={this.handleInc}> + </button>
+            <button onClick={this.handleDec}> - </button>
+            <button onClick={this.handleReset}>Reset</button>
+            <button onClick={this.handleFlip}>Flip</button>
+            <button onClick={this.handleFinal}>Final</button>
+            <button onClick={this.handleEval}>Eval</button>
           </div>
         </div>
       </div>

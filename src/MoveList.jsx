@@ -7,12 +7,13 @@ const MoveList = (props) => {
         const white = i + 1;
         const black = i + 2;
         const mvNum = Math.floor(i / 2) + 1
+        const active = 'highlight'
         if(i % 2 === 0) {
         return (
           <span key={i}>
-            <span>{mvNum}: </span><span className="link-button" onClick={(evt) => props.handleMoveClick(evt,white)}>{move}</span>
+            <span>{mvNum}: </span><span className={`${(props.currentMove === white) && active} link-button`} onClick={(evt) => props.handleMoveClick(evt,white)}>{move}</span>
             <span>&nbsp;&nbsp;</span>
-            <span className="link-button" onClick={(evt) => props.handleMoveClick(evt,black)}>{self[i + 1]}</span>
+            <span className={`${(props.currentMove === black) && active} link-button`} onClick={(evt) => props.handleMoveClick(evt,black)}>{self[i + 1]}</span>
           </span>
           )
         }
