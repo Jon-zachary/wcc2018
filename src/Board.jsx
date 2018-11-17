@@ -3,6 +3,7 @@ import Chess from 'chess.js';
 import Chessboard from 'chessboardjsx';
 import Eval from './Eval.jsx'
 import Slider from './Slider.jsx';
+import MoveList from './MoveList.jsx';
 import game1 from './game1';
 import game2 from './game2';
 import game3 from './game3';
@@ -29,6 +30,7 @@ class Board extends Component {
     this.handleFinal = this.handleFinal.bind(this);
     this.handleEval = this.handleEval.bind(this);
     this.handleSlide = this.handleSlide.bind(this);
+    this.handleMoveClick = this.handleMoveClick.bind(this);
   }
 
   componentDidMount() {
@@ -149,24 +151,11 @@ class Board extends Component {
     return (
       <div>
       <div className="Board">
-        <div className="movelist">
-          {this.state.moves.map((move, i , self) => {
-            const white = i + 1;
-            const black = i + 2;
-            const mvNum = Math.floor(i / 2) + 1
-            if(i % 2 === 0) {
-            return (
-              <span key={i}>
-                <span>{mvNum}: </span><span className="link-button" onClick={(evt) => this.handleMoveClick(evt,white)}>{move}</span>
-                <span>&nbsp;&nbsp;</span>
-                <span className="link-button" onClick={(evt) => this.handleMoveClick(evt,black)}>{self[i + 1]}</span>
-              </span>
-              )
-            }
-            return undefined;
-          })}
-          <span>{this.getResult()}</span>
-        </div>
+        <MoveList
+          moves={this.state.moves}
+          handleMoveClick={this.handleMoveClick}
+          getResult={this.getResult}
+        />
         <Eval
         fen={this.state.fen}
         depth={this.state.evalDepth}
