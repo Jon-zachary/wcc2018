@@ -145,7 +145,6 @@ text-decoration: none;
 }
 
 .evaluation {
-  height: 50px;
-  width: 100px;
-  overflow: scroll;
+  height: fit-content;
+  width: fit-content;
 }

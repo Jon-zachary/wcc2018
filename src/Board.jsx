@@ -167,8 +167,12 @@ class Board extends Component {
           })}
           <span>{this.getResult()}</span>
         </div>
+        <Eval
+        fen={this.state.fen}
+        depth={this.state.evalDepth}
+        isEval={this.state.isEval}
+        />
         <div className = "board-container">
-
         <Slider
           min={5}
           max={25}
@@ -198,11 +202,6 @@ class Board extends Component {
             <button className="final" onClick={this.handleFinal}>Final</button>
             <button className="eval" onClick={this.handleEval}>Eval</button>
           </div>
-            <Eval
-            fen={this.state.fen}
-            depth={this.state.evalDepth}
-            isEval={this.state.isEval}
-            />
         </div>
       </div>
     </div>
