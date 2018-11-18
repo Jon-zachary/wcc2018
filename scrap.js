@@ -24,3 +24,25 @@ function msToDate(ms) {
 
 
 console.log(msToDate(time));
+
+// {props.moves.map((move, i , self) => {
+//   const white = i + 1;
+//   const black = i + 2;
+//   const mvNum = Math.floor(i / 2) + 1
+//   const active = 'highlight'
+//   return (
+//     <span className="singleMove" key={i}>
+//       <span>{mvNum}: </span>
+//       <span className={`${(props.currentMove === white) && active} link-button`} onClick={(evt) => props.handleMoveClick(evt,white)}>{move} </span>
+//       <span className={`${(props.currentMove === black) && active} link-button`} onClick={(evt) => props.handleMoveClick(evt,black)}> {self[i + 1]}</span>
+//     </span>
+//     )
+// })}
+
+// <Slider
+//   min={5}
+//   max={25}
+//   step={1}
+//   onChange={this.handleSlide}
+//   val={this.state.evalDepth}
+//   />

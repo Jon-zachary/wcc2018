@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Slider from './Slider.jsx';
+import MoveList from './MoveList.jsx'
 
 class Eval extends Component {
   constructor(props) {
@@ -44,22 +46,42 @@ class Eval extends Component {
     const best = (arr[bestIdx + 1] === 'info') ? 'thinking' : arr[bestIdx + 1];
     const pvIdx = pvArr.indexOf('pvSan');
     const bmcIdx = pvArr.indexOf('bmc');
-    const pv = pvArr.slice(pvIdx + 1, bmcIdx);
+    const pv = [...this.props.moves.slice(0, this.props.currentMove),...pvArr.slice(pvIdx + 1, bmcIdx)];
+    const pt = (arr.indexOf('w') > -1) ? 'White' : 'Black';
     return ({
       cp,
       best,
       pv,
+      pt,
     })
   }
 
   render() {
   if(this.props.isEval){
-  const {cp, best, pv} = this.getEval(this.state.res);
+  let {cp, best, pv, pt} = this.getEval(this.state.res);
+  cp = (Number.isNaN(+cp)) ? 'thinking' : cp;
+  console.log(pv);
   return(
     <div className="evaluation">
+    <Slider
+      min={5}
+      max={25}
+      step={1}
+      onChange={this.props.handleSlide}
+      val={this.props.depth}
+    />
       <p>score: {cp}</p>
+      <p>Player to move: {pt}</p>
       <p>best move: {best}</p>
-      <div>probable variation: {pv}</div>
+      <p>current Move: {Math.ceil(this.props.currentMove / 2)}</p>
+      <MoveList
+        moves={pv}
+        getResult={()=>undefined}
+        currentMove={this.props.currentMove}
+        handleMoveClick={this.props.handleMoveClick}
+        title={"Probable Variation"}
+        start={this.props.currentMove}
+        />
     </div>
     )
   }

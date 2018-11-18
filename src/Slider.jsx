@@ -2,7 +2,7 @@ import React from 'react';
 
 const Slider = (props) => {
   return (
-    <div>
+    <div className="slider">
     <label className="depthLabel" htmlFor="depth">Depth</label>
     <br/>
     <input

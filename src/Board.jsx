@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Chess from 'chess.js';
 import Chessboard from 'chessboardjsx';
 import Eval from './Eval.jsx'
-import Slider from './Slider.jsx';
 import MoveList from './MoveList.jsx';
 import game1 from './game1';
 import game2 from './game2';
@@ -152,26 +151,16 @@ class Board extends Component {
   render() {
     return (
       <div>
-      <div className="Board">
+      <div className="game-container">
         <MoveList
           moves={this.state.moves}
           handleMoveClick={this.handleMoveClick}
           getResult={this.getResult}
           currentMove={this.state.currentMove}
-        />
-        <Eval
-        fen={this.state.fen}
-        depth={this.state.evalDepth}
-        isEval={this.state.isEval}
+          title={"Move List"}
+          start={0}
         />
         <div className = "board-container">
-        <Slider
-          min={5}
-          max={25}
-          step={1}
-          onChange={this.handleSlide}
-          val={this.state.evalDepth}
-          />
         <h1 className="game-header">Game {this.props.gameNumber}</h1>
         <Chessboard
           id={this.props.gameNumber}
@@ -185,6 +174,16 @@ class Board extends Component {
           getPostion={position => console.log(position)}
           undo={true}
           width={300}
+          />
+          <Eval
+          fen={this.state.fen}
+          depth={this.state.evalDepth}
+          isEval={this.state.isEval}
+          handleSlide={this.handleSlide}
+          getResult={this.getResult}
+          handleMoveClick={this.handleMoveClick}
+          currentMove={this.state.currentMove}
+          moves={this.state.moves}
           />
           <div className="button-wrapper">
             <button onClick={this.handleInc}> + </button>

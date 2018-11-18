@@ -9,7 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       multiView: true,
-      gameNumber: null,
+      gameNumber: 1
     }
     this.handleGameButton = this.handleGameButton.bind(this);
   }
@@ -32,7 +32,7 @@ class App extends Component {
       <Board gameNumber={3} />
       <Board gameNumber={4} />
     </div>
-    const view = (this.state.multiView) ? multiView : singleView
+    const view = singleView
     return (
       <div className="App">
         <Header
