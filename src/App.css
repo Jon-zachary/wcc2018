@@ -20,7 +20,7 @@ body {
   background-color: #d0c1ae;
 }
 
-.CountDown-container {
+/* .CountDown-container {
   display: flex;
   justify-content: space-between;
   font-family: Dosis, sans-serif;
@@ -40,7 +40,7 @@ body {
   font-size: 20px;
   color: #5e5e5e;
   font-weight: bolder;
-}
+} */
 
 .Title {
   display: flex;

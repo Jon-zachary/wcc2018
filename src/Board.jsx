@@ -30,11 +30,22 @@ class Board extends Component {
     this.handleEval = this.handleEval.bind(this);
     this.handleSlide = this.handleSlide.bind(this);
     this.handleMoveClick = this.handleMoveClick.bind(this);
+    this.updateGame = this.updateGame.bind(this);
   }
 
   componentDidMount() {
+    this.updateGame(this.props.gameNumber);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.gameNumber !== this.props.gameNumber) {
+      this.updateGame(this.props.gameNumber);
+    }
+  }
+
+  updateGame(gameNumber) {
     const game = new Chess();
-    const pgnString = `game${this.props.gameNumber}`
+    const pgnString = `game${gameNumber}`
     const gameObj = {
       game1,
       game2,
@@ -132,7 +143,7 @@ class Board extends Component {
   }
 
   handleMoveClick(evt, index) {
-    // evt.target.classList.add('highlight')
+    evt.target.classList.add('highlight')
     console.log(index)
     const game = new Chess();
     const moves = this.state.moves.slice(0, index);
