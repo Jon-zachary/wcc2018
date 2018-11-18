@@ -143,8 +143,6 @@ class Board extends Component {
   }
 
   handleMoveClick(evt, index) {
-    evt.target.classList.add('highlight')
-    console.log(index)
     const game = new Chess();
     const moves = this.state.moves.slice(0, index);
     moves.forEach(move => game.move(move))
