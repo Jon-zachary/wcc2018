@@ -136,8 +136,16 @@ text-decoration: none;
 }
 
 .evaluation {
-  height: 300px;
-  width: 300px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.varEval {
+  text-align: center;
+}
+
+.movesEval {
+  display: flex;
 }
 .movelist {
   display: flex;
@@ -164,4 +172,23 @@ text-decoration: none;
   height: 2.3em;
   font-size: 1.5em;
   background-color: peachpuff;
+}
+
+.info {
+  height: 300px;
+  overflow-y:auto;
+  background-color: #f5f2e9;
+}
+
+.pv {
+  background-color: #f5f2e9;
+  height: 300px;
+  overflow-y: auto;
+}
+
+.eval-container {
+  width: 300px;
+  height: 300px;
+  align-self: center;
+  margin: 0 5% 5%;
 }

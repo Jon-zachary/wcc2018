@@ -22,7 +22,7 @@ class Eval extends Component {
         })
       }
     }
-    
+
     componentDidMount() {
       this.updateEval()
     }
@@ -58,7 +58,10 @@ class Eval extends Component {
   cp = (Number.isNaN(+cp)) ? 'thinking' : cp;
   console.log(pv);
   return(
+    <div className="eval-container">
+    <div className="movesTitle">Analysis info</div>
     <div className="evaluation">
+    <div className="info">
     <Slider
       min={5}
       max={25}
@@ -70,15 +73,17 @@ class Eval extends Component {
       <p>Player to move: {pt}</p>
       <p>best move: {best}</p>
       <p>current Move: {Math.ceil(this.props.currentMove / 2)}</p>
-      <MoveList
-        moves={pv}
-        getResult={()=>undefined}
-        currentMove={this.props.currentMove}
-        handleMoveClick={this.props.handleMoveClick}
-        title={"Probable Variation"}
-        start={this.props.currentMove}
-        />
     </div>
+    <div className="pv">pv: <MoveList
+      moves={pv}
+      getResult={()=> undefined}
+      currentMove={this.props.currentMove}
+      start={this.props.currentMove}
+      showTitle={false}
+      />
+  </div>
+  </div>
+</div>
     )
   }
   return <div></div>

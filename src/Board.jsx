@@ -161,7 +161,6 @@ class Board extends Component {
 
   render() {
     return (
-      <div>
       <div className="game-container">
         <MoveList
           moves={this.state.moves}
@@ -170,6 +169,9 @@ class Board extends Component {
           currentMove={this.state.currentMove}
           title={"Move List"}
           start={0}
+          evalClass={'movelist'}
+          movesClass={'moves'}
+          showTitle={true}
         />
         <div className = "board-container">
         <h1 className="game-header">Game {this.props.gameNumber}</h1>
@@ -186,16 +188,6 @@ class Board extends Component {
           undo={true}
           width={300}
           />
-          <Eval
-          fen={this.state.fen}
-          depth={this.state.evalDepth}
-          isEval={this.state.isEval}
-          handleSlide={this.handleSlide}
-          getResult={this.getResult}
-          handleMoveClick={this.handleMoveClick}
-          currentMove={this.state.currentMove}
-          moves={this.state.moves}
-          />
           <div className="button-wrapper">
             <button onClick={this.handleInc}> + </button>
             <button onClick={this.handleDec}> - </button>
@@ -205,8 +197,17 @@ class Board extends Component {
             <button onClick={this.handleEval}>Eval</button>
           </div>
         </div>
+        <Eval
+        fen={this.state.fen}
+        depth={this.state.evalDepth}
+        isEval={this.state.isEval}
+        handleSlide={this.handleSlide}
+        getResult={this.getResult}
+        handleMoveClick={this.handleMoveClick}
+        currentMove={this.state.currentMove}
+        moves={this.state.moves}
+        />
       </div>
-    </div>
     );
   }
 }
