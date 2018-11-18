@@ -60,6 +60,8 @@ class Board extends Component {
       game,
       moves,
       fen,
+      currentMove: 0,
+      isEval: false,
     })
   }
 

@@ -11,7 +11,7 @@ class Eval extends Component {
       this.getEval = this.getEval.bind(this);
     }
 
-    componentDidMount(props) {
+    updateEval() {
       const sf = window['stockfish'];
       sf.postMessage(`position fen ${this.props.fen}`)
       sf.postMessage(`go depth ${this.props.depth}`)
@@ -22,18 +22,14 @@ class Eval extends Component {
         })
       }
     }
+    
+    componentDidMount() {
+      this.updateEval()
+    }
 
    componentDidUpdate(prevProps) {
      if ((this.props.fen !== prevProps.fen) || (this.props.depth !== prevProps.depth)) {
-       const sf = window['stockfish'];
-       sf.postMessage(`position fen ${this.props.fen}`)
-       sf.postMessage(`go depth ${this.props.depth}`)
-       sf.onmessage = (evt) => {
-         const ev = evt.data ? evt.data : evt;
-         this.setState({
-           res: [...this.state.res,...[ev]]
-         })
-       }
+       this.updateEval()
      }
    }
 
