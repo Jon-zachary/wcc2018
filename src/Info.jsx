@@ -2,7 +2,6 @@ import React from 'react';
 
 const Info = (props) => {
   const {Round, Black, White, Date, ECO, Result } = props.gameInfo || '';
-  console.log(props)
   return(
     <div className="movelist">
       <div className="movesTitle">Game Information</div>

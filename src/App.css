@@ -186,10 +186,13 @@ meter::-webkit-meter-optimum-value {
 }
 
 .move-button-wrapper {
-  height: 200px;
-  display: inline-flex;
-  justify-content: center;
+  height: 90px;
+  text-align: center;
   border: solid black 1px;
+}
+
+.move-button-wrapper button {
+  margin: 2% 1%;
 }
 
 .gameInfo {
@@ -199,4 +202,39 @@ meter::-webkit-meter-optimum-value {
 
 .gameInfo p {
   margin: 10px;
+}
+
+.GameHeader {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #b563b2c2;
+  border: black solid 1px;
+}
+
+.GameHeader h2 {
+  margin:10px;
+}
+
+.Eval2 {
+  display: flex;
+  flex-direction: column;
+  margin: 0 5% 5%;
+  background-color: #f5f2e9;
+  height: 250px;
+  width: 350px;
+}
+
+.eval2Info {
+  height: 300px;
+  font-size: 1.25em;
+  overflow-y: auto;
+  font-weight: 500;
+  column-rule: solid black 1px;
+}
+
+.eval-button-wrapper {
+  border: solid black 1px;
+  text-align: center;
 }

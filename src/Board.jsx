@@ -5,6 +5,7 @@ import Eval from './Eval.jsx'
 import MoveList from './MoveList.jsx';
 import Info from './Info.jsx';
 import GameHeader from './GameHeader.jsx';
+import Eval2 from './Eval2.jsx';
 import game1 from './game1';
 import game2 from './game2';
 import game3 from './game3';
@@ -197,20 +198,14 @@ class Board extends Component {
           width={500}
           />
         </div>
-
-        <Eval
-        fen={this.state.fen}
-        depth={this.state.evalDepth}
-        isEval={this.state.isEval}
-        handleSlide={this.handleSlide}
-        getResult={this.getResult}
-        handleMoveClick={this.handleMoveClick}
-        currentMove={this.state.currentMove}
-        moves={this.state.moves}
-        />
-      <Info
-        gameInfo={this.state.gameInfo}
-        />
+      <div className="right-column">
+        <Eval2
+          fen={this.state.fen} 
+          />
+        <Info
+          gameInfo={this.state.gameInfo}
+          />
+        </div>
       </div>
     );
   }
