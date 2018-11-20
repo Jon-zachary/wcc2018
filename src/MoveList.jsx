@@ -1,7 +1,6 @@
 import React from 'react';
 
 const MoveList = (props) => {
-  const title = (props.showTitle) ? <div className="movesTitle">{props.title}</div> : ''
   const start = props.start || 0;
   const formattedMoves = []
   let active = 'highlight';
@@ -24,11 +23,18 @@ const MoveList = (props) => {
     })
 
   return(
-    <div className={props.evalClass}>
-      {title}
-      <div className={props.movesClass}>
+    <div className="movelist">
+      <div className="movesTitle">{props.title}</div>
+      <div className="moves">
       <span>{formattedMoves}</span>
       <span>{props.getResult()}</span>
+      </div>
+      <div className = "move-button-wrapper">
+        <button onClick={props.handleReset}> Reset</button>
+        <button onClick={props.handleDec}> Prev </button>
+        <button onClick={props.handleInc}> Next </button>
+        <button onClick={props.handleFinal}> Final </button>
+        <button onClick={props.handleFlip}>Flip</button>
       </div>
     </div>
   )

@@ -69,12 +69,23 @@ class Eval extends Component {
       onChange={this.props.handleSlide}
       val={this.props.depth}
     />
-      <p>score: {cp}</p>
+  <p>score:{(cp / 100) || 'Thinking'}  </p>
+  <meter
+    title="centipawns"
+    value={cp / 100}
+    min= "-4"
+    max= "4"
+    optimum= "0"
+    >
+</meter>
+
       <p>Player to move: {pt}</p>
       <p>best move: {best}</p>
       <p>current Move: {Math.ceil(this.props.currentMove / 2)}</p>
     </div>
-    <div className="pv">pv: <MoveList
+    <div className="pv">
+      <h4>Computer Variation</h4>
+      <MoveList
       moves={pv}
       getResult={()=> undefined}
       currentMove={this.props.currentMove}

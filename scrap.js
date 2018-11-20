@@ -46,3 +46,25 @@ console.log(msToDate(time));
 //   onChange={this.handleSlide}
 //   val={this.state.evalDepth}
 //   />
+
+/* .CountDown-container {
+  display: flex;
+  justify-content: space-between;
+  font-family: Dosis, sans-serif;
+  font-size: 55px;
+  color: white;
+  background-color: black;
+}
+
+.TimeUnit {
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.TimeName {
+  font-size: 20px;
+  color: #5e5e5e;
+  font-weight: bolder;
+} */

@@ -3,11 +3,12 @@ import Chess from 'chess.js';
 import Chessboard from 'chessboardjsx';
 import Eval from './Eval.jsx'
 import MoveList from './MoveList.jsx';
+import Info from './Info.jsx';
+import GameHeader from './GameHeader.jsx';
 import game1 from './game1';
 import game2 from './game2';
 import game3 from './game3';
 import game4 from './game4';
-
 
 class Board extends Component {
 
@@ -15,6 +16,7 @@ class Board extends Component {
     super(props);
     this.state = {
       game: null,
+      gameInfo: null,
       currentMove: 0,
       moves: [],
       orientation: 'white',
@@ -54,9 +56,9 @@ class Board extends Component {
     }
     game.load_pgn(gameObj[pgnString]);
     const moves = game.history();
-    game.reset()
-    const fen = game.fen();
+    const fen = new Chess().fen();
     this.setState({
+      gameInfo: game.header(),
       game,
       moves,
       fen,
@@ -169,12 +171,18 @@ class Board extends Component {
           currentMove={this.state.currentMove}
           title={"Move List"}
           start={0}
-          evalClass={'movelist'}
-          movesClass={'moves'}
           showTitle={true}
+          handleInc={this.handleInc}
+          handleDec={this.handleDec}
+          handleReset={this.handleReset}
+          handleFinal={this.handleFinal}
+          handleFlip={this.handleFlip}
         />
+
         <div className = "board-container">
-        <h1 className="game-header">Game {this.props.gameNumber}</h1>
+        <GameHeader
+          gameInfo={this.state.gameInfo}
+          />
         <Chessboard
           id={this.props.gameNumber}
           draggable={true}
@@ -186,17 +194,10 @@ class Board extends Component {
           orientation={this.state.orientation}
           getPostion={position => console.log(position)}
           undo={true}
-          width={300}
+          width={500}
           />
-          <div className="button-wrapper">
-            <button onClick={this.handleInc}> + </button>
-            <button onClick={this.handleDec}> - </button>
-            <button onClick={this.handleReset}>Reset</button>
-            <button onClick={this.handleFlip}>Flip</button>
-            <button onClick={this.handleFinal}>Final</button>
-            <button onClick={this.handleEval}>Eval</button>
-          </div>
         </div>
+
         <Eval
         fen={this.state.fen}
         depth={this.state.evalDepth}
@@ -206,6 +207,9 @@ class Board extends Component {
         handleMoveClick={this.handleMoveClick}
         currentMove={this.state.currentMove}
         moves={this.state.moves}
+        />
+      <Info
+        gameInfo={this.state.gameInfo}
         />
       </div>
     );

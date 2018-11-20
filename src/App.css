@@ -17,30 +17,10 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #d0c1ae;
+  background-color:#ffbf007d;
+  height: 100%;
+  width: 100%;
 }
-
-/* .CountDown-container {
-  display: flex;
-  justify-content: space-between;
-  font-family: Dosis, sans-serif;
-  font-size: 55px;
-  color: white;
-  background-color: black;
-}
-
-.TimeUnit {
-  margin: 0 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.TimeName {
-  font-size: 20px;
-  color: #5e5e5e;
-  font-weight: bolder;
-} */
 
 .Title {
   display: flex;
@@ -81,13 +61,14 @@ button {
   display: flex;
   flex-direction: row;
   flex-wrap:wrap;
-  background-color: slategrey;
+  background-color: #6390B5;
   justify-content: space-around;
 }
 
 .game-container {
   display:flex;
   align-items: flex-end;
+  width:100%;
 }
 
 .link-button {
@@ -151,10 +132,9 @@ text-decoration: none;
   display: flex;
   flex-direction: column;
   margin: 0 5% 5%;
-  height: 300px;
   background-color: #f5f2e9;
-  width: 300px;
-  overflow-y: auto;
+  height: 300px;
+  width: 350px;
 }
 
 .moves {
@@ -171,7 +151,8 @@ text-decoration: none;
   line-height: 2.3em;
   height: 2.3em;
   font-size: 1.5em;
-  background-color: peachpuff;
+  background-color: #6390B5;
+  border: solid black 1px;
 }
 
 .info {
@@ -191,4 +172,31 @@ text-decoration: none;
   height: 300px;
   align-self: center;
   margin: 0 5% 5%;
+}
+
+meter::-webkit-meter-bar {
+  background: none;
+  background-color: Black;
+  box-shadow: 0 5px 5px -5px #333 inset;
+}
+
+meter::-webkit-meter-optimum-value {
+  background: none;
+  background-color: White;
+}
+
+.move-button-wrapper {
+  height: 200px;
+  display: inline-flex;
+  justify-content: center;
+  border: solid black 1px;
+}
+
+.gameInfo {
+  font-size: 1.25em;
+  font-weight: 500;
+}
+
+.gameInfo p {
+  margin: 10px;
 }
