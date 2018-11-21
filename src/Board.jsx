@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import Chess from 'chess.js';
 import Chessboard from 'chessboardjsx';
-import Eval from './Eval.jsx'
 import MoveList from './MoveList.jsx';
 import Info from './Info.jsx';
 import GameHeader from './GameHeader.jsx';
 import Eval2 from './Eval2.jsx';
+
 import game1 from './game1';
 import game2 from './game2';
 import game3 from './game3';
 import game4 from './game4';
+import game5 from './game5';
+import game6 from './game6';
+import game7 from './game7';
+import game8 from './game8';
 
 class Board extends Component {
 
@@ -54,6 +58,10 @@ class Board extends Component {
       game2,
       game3,
       game4,
+      game5,
+      game6,
+      game7,
+      game8,
     }
     game.load_pgn(gameObj[pgnString]);
     const moves = game.history();
@@ -132,6 +140,10 @@ class Board extends Component {
       game2,
       game3,
       game4,
+      game5,
+      game6,
+      game7,
+      game8,
     }
     game.load_pgn(gameObj[pgnString]);
     const fen = game.fen();
@@ -200,7 +212,9 @@ class Board extends Component {
         </div>
       <div className="right-column">
         <Eval2
-          fen={this.state.fen} 
+          fen={this.state.fen}
+          currentMove={this.state.currentMove}
+          handleMoveClick={this.handleMoveClick}
           />
         <Info
           gameInfo={this.state.gameInfo}

@@ -16,6 +16,10 @@ const Header = (props) => {
       <button className="nav-button" onClick={props.handleButton}>Game 2</button>
       <button className="nav-button" onClick={props.handleButton}>Game 3</button>
       <button className="nav-button" onClick={props.handleButton}>Game 4</button>
+      <button className="nav-button" onClick={props.handleButton}>Game 5</button>
+      <button className="nav-button" onClick={props.handleButton}>Game 6</button>
+      <button className="nav-button" onClick={props.handleButton}>Game 7</button>
+      <button className="nav-button" onClick={props.handleButton}>Game 8</button>
       </nav>
     </div>
     <Player
