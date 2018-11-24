@@ -65,11 +65,13 @@ class Board extends Component {
     }
     game.load_pgn(gameObj[pgnString]);
     const moves = game.history();
+    const movesVerbose = game.history({verbose: true})
     const fen = new Chess().fen();
     this.setState({
       gameInfo: game.header(),
       game,
       moves,
+      movesVerbose,
       fen,
       currentMove: 0,
       isEval: false,
@@ -212,6 +214,8 @@ class Board extends Component {
         </div>
       <div className="right-column">
         <Eval2
+          moves={this.state.moves}
+          movesVerbose={this.state.movesVerbose}
           fen={this.state.fen}
           currentMove={this.state.currentMove}
           handleMoveClick={this.handleMoveClick}

@@ -10,13 +10,15 @@ class Eval2 extends Component {
       pv: '',
       bestMove: '',
       isStopped: false,
+      isHidden: false,
+      sf: window['stockfish']
     }
   }
 
   updateEval = () => {
-    const sf = window['stockfish'];
+    const sf = this.state.sf;
+    sf.postMessage('setoption name clear hash')
     sf.postMessage(`position fen ${this.props.fen}`)
-    // sf.postMessage('setoption name Hash value 2048')
     sf.postMessage(`go infinite`)
     sf.onmessage = (evt) => {
       const ev = evt.data;
@@ -32,10 +34,26 @@ class Eval2 extends Component {
     }
   }
 
+  resetEval = () => {
+    this.setState({
+      cp:0,
+      nodes:'Calculating',
+      pv:'Calculating'
+    })
+  }
+
   componentDidUpdate(prevProps) {
     if ((this.props.fen !== prevProps.fen) || (this.props.depth !== prevProps.depth)) {
-      this.updateEval()
+      this.resetEval();
+      this.updateEval();
     }
+  }
+
+  parseMovesVerbose = () => {
+    const movesV = this.state.movesVerbose.map(mv => {
+      return mv.from+mv.to;
+    });
+    return movesV;
   }
 
   formatMoves = (moves) => {
@@ -58,12 +76,20 @@ class Eval2 extends Component {
     }
 
   stopSf = () => {
-    const sf = window['stockfish'];
+    const sf = this.state.sf;
     sf.postMessage('stop');
   }
 
   startSf = () => {
     this.updateEval();
+  }
+
+  hideEvalFrame = () => {
+    this.setState((prevState) => {
+      return {
+      isHidden: !prevState.isHidden
+      }
+    })
   }
 
   parseEval = (str='') => {
@@ -80,7 +106,7 @@ class Eval2 extends Component {
     //regex for pv
     const pvRE = /(?<=pvSan).*?(?=bmc)/
     const pvM = str.match(pvRE);
-    const pv = (pvM) ? pvM[0] : this.state.pv;
+    const pv = (pvM && pvM[0] !== this.state.pv) ? pvM[0] : this.state.pv;
 
     return {
       cp,
@@ -88,21 +114,24 @@ class Eval2 extends Component {
       pv,
     }
 }
+
   render() {
     const rawMoves = this.state.pv;
     const movesArr = rawMoves.split(' ')
+    const isHiddenClass = (this.state.isHidden) ? 'hideEval' : '' ;
+    const isHiddenColorClass = (this.state.isHidden) ? 'inherit' : '';
     movesArr.pop();
     movesArr.shift();
     const moves = this.formatMoves(movesArr);
     return(
-    <div className="Eval2">
+    <div className="Eval2" style={{"backgroundColor": `${isHiddenColorClass}`}}>
       <div className="movesTitle">Engine Evaluation</div>
-      <div className="eval2Info">
+      <div className="eval2Info" style={{"animationDuration": "1s", "animationName": `${isHiddenClass}`}}>
         <p>Best move: {this.state.pv.split(' ')[1]}</p>
-          <span>score:{(this.state.cp / 100) || 'Thinking'}</span>
+          <span>score:{(this.state.cp / 100) || 'Calculating'}</span>
           <meter
             title="centipawns"
-            value={this.state.cp / 100}
+            value={(this.state.cp) ? this.state.cp / 100 : 0}
             min= "-4"
             max= "4"
             optimum= "0"
@@ -114,6 +143,7 @@ class Eval2 extends Component {
       <div className={"eval-button-wrapper"}>
       <button onClick={this.startSf}>Start</button>
       <button onClick={this.stopSf}>Stop</button>
+      <button onClick={this.hideEvalFrame}> Hide/Show </button>
       </div>
     </div>
     )
