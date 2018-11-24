@@ -68,3 +68,5 @@ console.log(msToDate(time));
   color: #5e5e5e;
   font-weight: bolder;
 } */
+
+// style={{"backgroundColor": `${isHiddenColorClass}`}}

@@ -6,7 +6,6 @@ class Eval2 extends Component {
     this.state = {
       raw: '',
       cp: 0,
-      nodes: 0,
       pv: '',
       bestMove: '',
       isStopped: false,
@@ -19,7 +18,7 @@ class Eval2 extends Component {
     const sf = this.state.sf;
     sf.postMessage('setoption name clear hash')
     sf.postMessage(`position fen ${this.props.fen}`)
-    sf.postMessage(`go infinite`)
+    sf.postMessage(`go movetime 20000`)
     sf.onmessage = (evt) => {
       const ev = evt.data;
       const cp = (this.parseEval(ev).cp) || this.state.cp;
@@ -98,11 +97,6 @@ class Eval2 extends Component {
     const cpM = str.match(cpRE);
     const cp = (cpM) ? cpM[1] : this.state.cp;
 
-    //regex for nodes Searched
-    const nodesRE = /nodes (\d+)/
-    const nodesM = str.match(nodesRE);
-    const nodes = (nodesM) ? nodesM[1] : this.state.nodes;
-
     //regex for pv
     const pvRE = /(?<=pvSan).*?(?=bmc)/
     const pvM = str.match(pvRE);
@@ -110,7 +104,6 @@ class Eval2 extends Component {
 
     return {
       cp,
-      nodes,
       pv,
     }
 }
@@ -118,15 +111,19 @@ class Eval2 extends Component {
   render() {
     const rawMoves = this.state.pv;
     const movesArr = rawMoves.split(' ')
-    const isHiddenClass = (this.state.isHidden) ? 'hideEval' : '' ;
-    const isHiddenColorClass = (this.state.isHidden) ? 'inherit' : '';
+    const isHiddenClass = (this.state.isHidden) ? 'hideEval' : 'showEval' ;
+    const hideShowButtonText = (this.state.isHidden) ? 'Show' : 'Hide';
     movesArr.pop();
     movesArr.shift();
     const moves = this.formatMoves(movesArr);
     return(
-    <div className="Eval2" style={{"backgroundColor": `${isHiddenColorClass}`}}>
+    <div className="Eval2">
       <div className="movesTitle">Engine Evaluation</div>
-      <div className="eval2Info" style={{"animationDuration": "1s", "animationName": `${isHiddenClass}`}}>
+      <div className="eval2Info"
+         style={{
+         "animationDurration": "1s",
+         "animationName": `${isHiddenClass}`,
+         }}>
         <p>Best move: {this.state.pv.split(' ')[1]}</p>
           <span>score:{(this.state.cp / 100) || 'Calculating'}</span>
           <meter
@@ -137,13 +134,12 @@ class Eval2 extends Component {
             optimum= "0"
             >
         </meter>
-        <p>Nodes Searched: {this.state.nodes}</p>
-        <div>Computer Variation: {moves}</div>
+        <div className="pv">Computer Variation: {moves}</div>
       </div>
       <div className={"eval-button-wrapper"}>
       <button onClick={this.startSf}>Start</button>
       <button onClick={this.stopSf}>Stop</button>
-      <button onClick={this.hideEvalFrame}> Hide/Show </button>
+      <button onClick={this.hideEvalFrame}> {hideShowButtonText } </button>
       </div>
     </div>
     )

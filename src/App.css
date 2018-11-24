@@ -225,10 +225,8 @@ meter::-webkit-meter-optimum-value {
   display: flex;
   flex-direction: column;
   margin: 0 5% 5%;
-  background-color: #f5f2e9;
   height: 250px;
   width: 350px;
-  animation-fill-mode: forwards;
 }
 
 .eval2Info {
@@ -239,12 +237,17 @@ meter::-webkit-meter-optimum-value {
   background-color: #f5f2e9;
   column-rule: solid black 1px;
   animation-fill-mode: forwards;
+  animation-duration: 1s;
 }
 
 .eval-button-wrapper {
   border: solid black 1px;
   text-align: center;
   background-color: #f5f2e9
+}
+
+.pv {
+  margin-top: 5%;
 }
 
 @keyframes hideEval {
@@ -257,7 +260,11 @@ meter::-webkit-meter-optimum-value {
   }
 }
 
-@keyframes changeEvalColor {
-  0% {background: #f5f2e9}
-  100% {background: inherit}
+@keyframes showEval {
+  from {
+    height: 0%;
+  }
+  to {
+    height: 100%;
+  }
 }
