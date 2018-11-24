@@ -6,15 +6,7 @@ import Info from './Info.jsx';
 import GameHeader from './GameHeader.jsx';
 import Eval2 from './Eval2.jsx';
 import Variation from './Variation'
-
-import game1 from './game1';
-import game2 from './game2';
-import game3 from './game3';
-import game4 from './game4';
-import game5 from './game5';
-import game6 from './game6';
-import game7 from './game7';
-import game8 from './game8';
+import AllGames from './games/AllGames'
 
 class Board extends Component {
 
@@ -56,18 +48,8 @@ class Board extends Component {
 
   updateGame(gameNumber) {
     const game = new Chess();
-    const pgnString = `game${gameNumber}`
-    const gameObj = {
-      game1,
-      game2,
-      game3,
-      game4,
-      game5,
-      game6,
-      game7,
-      game8,
-    }
-    game.load_pgn(gameObj[pgnString]);
+    const pgnString = AllGames[gameNumber - 1]
+    game.load_pgn(pgnString);
     const moves = game.history();
     const movesVerbose = game.history({verbose: true})
     const fen = new Chess().fen();
@@ -138,32 +120,16 @@ class Board extends Component {
       fen,
     })
   }
-// refactor
   handleFinal(e) {
     const game = new Chess();
-    const pgnString = `game${this.props.gameNumber}`
-    const gameObj = {
-      game1,
-      game2,
-      game3,
-      game4,
-      game5,
-      game6,
-      game7,
-      game8,
-    }
-    game.load_pgn(gameObj[pgnString]);
+    const pgnString = AllGames[this.props.gameNumber - 1]
+    game.load_pgn(pgnString);
+    game.load_pgn(pgnString);
     const fen = game.fen();
     this.setState({
       game,
       fen
     })
-  }
-// refactor
-  getResult() {
-    const moves = game1.split(" ");
-    const result = moves[moves.length - 1];
-    return result;
   }
 
   handleMoveClick(evt, index) {
@@ -230,6 +196,7 @@ handleBackClick() {
           handleReset={this.handleReset}
           handleFinal={this.handleFinal}
           handleFlip={this.handleFlip}
+          gameInfo={this.state.gameInfo}
         />
       </div>
         <div className = "board-container">

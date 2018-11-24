@@ -2,6 +2,7 @@ import React from 'react';
 
 const MoveList = (props) => {
   const start = props.start || 0;
+  const result = (props.gameInfo) ? props.gameInfo.Result : '';
   const formattedMoves = []
   let active = 'highlight';
     props.moves.forEach((m, i) => {
@@ -27,7 +28,7 @@ const MoveList = (props) => {
       <div className="movesTitle">{props.title}</div>
       <div className="moves">
       <span>{formattedMoves}</span>
-      <span>{props.getResult()}</span>
+      <div>{result}</div>
       </div>
       <div className = "eval-button-wrapper">
         <button onClick={props.handleReset}> Reset</button>
