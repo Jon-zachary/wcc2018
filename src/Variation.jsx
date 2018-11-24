@@ -22,6 +22,9 @@ const Variation = (props) => {
     <div className="Eval2">
       <div className="movesTitle">Variation</div>
       <div className="eval2Info">{formatMoves()}</div>
+      <div className="eval-button-wrapper">
+      <button onClick={props.handleBack}>Back to mainline</button>
+      </div>
     </div>
   )
 }

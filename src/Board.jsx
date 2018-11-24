@@ -41,6 +41,7 @@ class Board extends Component {
     this.handleMoveClick = this.handleMoveClick.bind(this);
     this.updateGame = this.updateGame.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
+    this.handleBackClick = this.handleBackClick.bind(this);
   }
 
   componentDidMount() {
@@ -193,6 +194,18 @@ handleDrop({sourceSquare, targetSquare, piece}) {
   })
 }
 
+handleBackClick() {
+  const currentMove = this.state.currentMove + 1;
+  const game = new Chess();
+  const moves = this.state.moves.slice(0, currentMove);
+  moves.forEach(move => game.move(move))
+  const fen = game.fen()
+  this.setState({
+    fen,
+    varMoves: []
+  })
+}
+
 
 
   render() {
@@ -202,6 +215,7 @@ handleDrop({sourceSquare, targetSquare, piece}) {
         <Variation
           varMoves={this.state.varMoves}
           start={this.state.currentMove}
+          handleBack={this.handleBackClick}
           />
         <MoveList
           moves={this.state.moves}
