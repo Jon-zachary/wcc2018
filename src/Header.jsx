@@ -9,8 +9,8 @@ const Header = (props) => {
       name="Magnus Carlsen"
       />
     <div className="Title">
-      World Chess Championship 2018
-      Caruana Vs. Carlsen
+      <p>World Chess Championship 2018</p>
+      <p>Caruana Vs. Carlsen</p>
       <nav>
       <button className="nav-button" onClick={props.handleButton}>Game 1</button>
       <button className="nav-button" onClick={props.handleButton}>Game 2</button>

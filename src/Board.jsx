@@ -5,6 +5,7 @@ import MoveList from './MoveList.jsx';
 import Info from './Info.jsx';
 import GameHeader from './GameHeader.jsx';
 import Eval2 from './Eval2.jsx';
+import Variation from './Variation'
 
 import game1 from './game1';
 import game2 from './game2';
@@ -24,6 +25,7 @@ class Board extends Component {
       gameInfo: null,
       currentMove: 0,
       moves: [],
+      varMoves: [],
       orientation: 'white',
       isEval: false,
       evalDepth: 5,
@@ -38,6 +40,7 @@ class Board extends Component {
     this.handleSlide = this.handleSlide.bind(this);
     this.handleMoveClick = this.handleMoveClick.bind(this);
     this.updateGame = this.updateGame.bind(this);
+    this.handleDrop = this.handleDrop.bind(this);
   }
 
   componentDidMount() {
@@ -75,6 +78,7 @@ class Board extends Component {
       fen,
       currentMove: 0,
       isEval: false,
+      varMoves:[],
     })
   }
 
@@ -133,7 +137,7 @@ class Board extends Component {
       fen,
     })
   }
-
+// refactor
   handleFinal(e) {
     const game = new Chess();
     const pgnString = `game${this.props.gameNumber}`
@@ -154,7 +158,7 @@ class Board extends Component {
       fen
     })
   }
-
+// refactor
   getResult() {
     const moves = game1.split(" ");
     const result = moves[moves.length - 1];
@@ -175,10 +179,30 @@ class Board extends Component {
   })
 }
 
+handleDrop({sourceSquare, targetSquare, piece}) {
+  const game = new Chess(this.state.fen);
+  game.move({
+    to: targetSquare,
+    from: sourceSquare,
+  });
+  this.setState((prevState) => {
+    return {
+    fen: game.fen(),
+    varMoves: [...prevState.varMoves,...game.history()],
+    }
+  })
+}
+
+
 
   render() {
     return (
       <div className="game-container">
+        <div className = 'column'>
+        <Variation
+          varMoves={this.state.varMoves}
+          start={this.state.currentMove}
+          />
         <MoveList
           moves={this.state.moves}
           handleMoveClick={this.handleMoveClick}
@@ -193,7 +217,7 @@ class Board extends Component {
           handleFinal={this.handleFinal}
           handleFlip={this.handleFlip}
         />
-
+      </div>
         <div className = "board-container">
         <GameHeader
           gameInfo={this.state.gameInfo}
@@ -202,17 +226,14 @@ class Board extends Component {
           id={this.props.gameNumber}
           draggable={true}
           position={this.state.fen}
-          boardStyle={{
-            marginBottom: "5px",
-          }}
-          transitionDuration={0}
           orientation={this.state.orientation}
           getPostion={position => console.log(position)}
           undo={true}
-          width={500}
+          width={420}
+          onDrop={this.handleDrop}
           />
         </div>
-      <div className="right-column">
+      <div className="column">
         <Eval2
           moves={this.state.moves}
           movesVerbose={this.state.movesVerbose}

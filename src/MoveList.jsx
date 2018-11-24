@@ -29,7 +29,7 @@ const MoveList = (props) => {
       <span>{formattedMoves}</span>
       <span>{props.getResult()}</span>
       </div>
-      <div className = "move-button-wrapper">
+      <div className = "eval-button-wrapper">
         <button onClick={props.handleReset}> Reset</button>
         <button onClick={props.handleDec}> Prev </button>
         <button onClick={props.handleInc}> Next </button>
