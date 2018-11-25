@@ -202,17 +202,17 @@ handleBackClick() {
         <div className = "board-container">
         <GameHeader
           gameInfo={this.state.gameInfo}
-          />
+        />
         <Chessboard
           id={this.props.gameNumber}
           draggable={true}
+          transitionDuration={0}
           position={this.state.fen}
           orientation={this.state.orientation}
-          getPostion={position => console.log(position)}
           undo={true}
           width={420}
           onDrop={this.handleDrop}
-          />
+        />
         </div>
       <div className="column">
         <Eval2
