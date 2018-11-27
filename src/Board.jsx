@@ -13,6 +13,8 @@ class Board extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isMovHidden:false,
+      isInfoHidden: false,
       isVarHidden: false,
       game: null,
       gameInfo: null,
@@ -36,6 +38,8 @@ class Board extends Component {
     this.handleDrop = this.handleDrop.bind(this);
     this.handleBackClick = this.handleBackClick.bind(this);
     this.hideFrame = this.hideFrame.bind(this);
+    this.hideMovFrame = this.hideMovFrame.bind(this);
+    this.hideInfoFrame = this.hideInfoFrame.bind(this);
   }
 
   componentDidMount() {
@@ -122,6 +126,7 @@ class Board extends Component {
       fen,
     })
   }
+
   handleFinal(e) {
     const game = new Chess();
     const pgnString = AllGames[this.props.gameNumber - 1]
@@ -182,6 +187,23 @@ hideFrame() {
   })
 }
 
+hideMovFrame() {
+  console.log('inside hide move');
+  this.setState((prevState) => {
+    return {
+      isMovHidden: !prevState.isMovHidden
+    }
+  })
+}
+
+hideInfoFrame() {
+  this.setState((prevState) => {
+    return {
+      isInfoHidden: !prevState.isInfoHidden
+    }
+  })
+}
+
   render() {
     return (
       <div className="game-container">
@@ -207,6 +229,8 @@ hideFrame() {
           handleFinal={this.handleFinal}
           handleFlip={this.handleFlip}
           gameInfo={this.state.gameInfo}
+          hideMovFrame={this.hideMovFrame}
+          isMovHidden={this.state.isMovHidden}
         />
       </div>
         <div className = "board-container">
@@ -241,6 +265,8 @@ hideFrame() {
           />
         <Info
           gameInfo={this.state.gameInfo}
+          hideInfoFrame={this.hideInfoFrame}
+          isInfoHidden={this.state.isInfoHidden}
           />
         </div>
       </div>

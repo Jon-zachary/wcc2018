@@ -74,7 +74,6 @@ button {
 
 .game-container {
   display:flex;
-  align-items: flex-end;
   justify-content: space-around;
   width:100%;
 }
@@ -140,18 +139,20 @@ button {
   display: flex;
   flex-direction: column;
   margin-bottom: 10%;
-  background-color: #f5f2e9;
   height: 200px;
   width: 350px;
-  border: solid black 1px;
 }
 
 .moves {
+  width: 350px;
   columns: 2;
   font-size: 1.25em;
-  overflow-y: auto;
+  overflow-y: scroll;
+  background-color: #f5f2e9;
   font-weight: 500;
   column-rule: solid black 1px;
+  animation-fill-mode:forwards;
+  animation-duration: 1s;
 }
 
 .movesTitle {
@@ -212,6 +213,9 @@ meter::-webkit-meter-optimum-value {
   font-size: 1.25em;
   font-weight: 500;
   overflow-y: auto;
+  background-color: #f5f2e9;
+  animation-fill-mode:forwards;
+  animation-duration: 1s;
 }
 
 .gameInfo p {

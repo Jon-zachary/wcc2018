@@ -3,6 +3,9 @@ import React from 'react';
 const MoveList = (props) => {
   const start = props.start || 0;
   const result = (props.gameInfo) ? props.gameInfo.Result : '';
+  const isMovHidden = props.isMovHidden;
+  const isHiddenClass = (isMovHidden) ? 'hideEval' : 'showEval' ;
+  const hideShowButtonText = (isMovHidden) ? 'Show' : 'Hide';
   const formattedMoves = []
     props.moves.forEach((m, i) => {
       const active  = (props.currentMove === i + 1) ? 'highlight' : undefined;
@@ -26,9 +29,16 @@ const MoveList = (props) => {
   return(
     <div className="movelist">
       <div className="movesTitle">{props.title}</div>
-      <div className="moves">
+      <div className="moves"
+        style={{
+        "animationDurration": "1s",
+        "animationName": `${isHiddenClass}`,
+        }}>
       <span>{formattedMoves}</span>
       <div>{result}</div>
+      </div>
+      <div className = "eval-button-wrapper">
+        <button onClick={props.hideMovFrame}>{hideShowButtonText}</button>
       </div>
     </div>
   )
