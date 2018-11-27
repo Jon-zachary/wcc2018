@@ -2,11 +2,12 @@ import React from 'react';
 import Player from './Player.jsx';
 import allGames from './games/AllGames.jsx';
 
+// TODO: minimize when game is selected.
 const Header = (props) => {
   const createButtonList = (games) => {
     const buttons = games.map((_, i) => {
       return (
-        <button className="nav-button" onClick={props.handleButton}>
+        <button key={i} className="nav-button" onClick={props.handleButton}>
           Game {i + 1}
         </button>
       )

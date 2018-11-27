@@ -25,21 +25,19 @@ body {
 .Title {
   display: flex;
   flex-direction: column;
-  flex: 1;
   order: 1;
   font-size: 2em;
-  justify-content: flex-end;
   align-items: center;
   text-align: center;
 }
 
 .Title p {
-  margin:0;
+  margin:0 0 10px;
 }
 
  nav {
   display: flex;
-  margin-top: 50px;
+  margin-top: 10 px;
   margin-bottom: 10px;
 }
 
@@ -51,7 +49,7 @@ body {
 
 .Player-Title {
   font-size: 1em;
-  margin: 0;
+  margin-bottom: 1%;
 }
 
 .button-wrapper {
@@ -141,9 +139,11 @@ button {
 .movelist {
   display: flex;
   flex-direction: column;
+  margin-bottom: 10%;
   background-color: #f5f2e9;
-  height: 300px;
+  height: 200px;
   width: 350px;
+  border: solid black 1px;
 }
 
 .moves {
@@ -211,6 +211,7 @@ meter::-webkit-meter-optimum-value {
 .gameInfo {
   font-size: 1.25em;
   font-weight: 500;
+  overflow-y: auto;
 }
 
 .gameInfo p {
@@ -234,14 +235,13 @@ meter::-webkit-meter-optimum-value {
 .Eval {
   display: flex;
   flex-direction: column;
-  height: 250px;
+  height: 200px;
   width: 350px;
   margin-bottom: 10%;
   margin-top:2%;
 }
 
 .EvalInfo {
-  height: 300px;
   font-size: 1.25em;
   overflow-y: auto;
   font-weight: 500;
@@ -249,6 +249,10 @@ meter::-webkit-meter-optimum-value {
   column-rule: solid black 1px;
   animation-fill-mode: forwards;
   animation-duration: 1s;
+}
+
+.EvalInfo p {
+  margin-top: 0;
 }
 
 .eval-button-wrapper {
@@ -267,8 +271,15 @@ meter::-webkit-meter-optimum-value {
   justify-content: center;
 }
 
-
-
+.board-buttons {
+    padding: 3%;
+    display: flex;
+    align-self: center;
+    border: solid 1px;
+    background-color: #b563b2c2;
+    width:100%;
+    justify-content: center;
+}
 @keyframes hideEval {
   from {
     height: 100%;

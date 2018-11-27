@@ -223,6 +223,13 @@ hideFrame() {
           width={420}
           onDrop={this.handleDrop}
         />
+      <div className = "board-buttons">
+          <button onClick={this.handleReset}> Reset</button>
+          <button onClick={this.handleDec}> Prev </button>
+          <button onClick={this.handleInc}> Next </button>
+          <button onClick={this.handleFinal}> Final </button>
+          <button onClick={this.handleFlip}>Flip</button>
+        </div>
         </div>
       <div className="column">
         <Eval

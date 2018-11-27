@@ -30,13 +30,6 @@ const MoveList = (props) => {
       <span>{formattedMoves}</span>
       <div>{result}</div>
       </div>
-      <div className = "eval-button-wrapper">
-        <button onClick={props.handleReset}> Reset</button>
-        <button onClick={props.handleDec}> Prev </button>
-        <button onClick={props.handleInc}> Next </button>
-        <button onClick={props.handleFinal}> Final </button>
-        <button onClick={props.handleFlip}>Flip</button>
-      </div>
     </div>
   )
 }

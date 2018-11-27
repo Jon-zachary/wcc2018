@@ -5,7 +5,7 @@ const Player = (props) => {
   return (
     <div className="Player">
       <h2 className="Player-Title">{name}</h2>
-      <img src={src} alt="name" style={{borderRadius: "20px", height: "200px", width: "150px"}} />
+      <img src={src} alt="name" style={{borderRadius: "100px", height: "100px", width: "100px"}} />
     </div>
   )
 }
