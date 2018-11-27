@@ -231,7 +231,7 @@ meter::-webkit-meter-optimum-value {
   margin:1px;
 }
 
-.Eval2 {
+.Eval {
   display: flex;
   flex-direction: column;
   height: 250px;
@@ -240,7 +240,7 @@ meter::-webkit-meter-optimum-value {
   margin-top:2%;
 }
 
-.eval2Info {
+.EvalInfo {
   height: 300px;
   font-size: 1.25em;
   overflow-y: auto;

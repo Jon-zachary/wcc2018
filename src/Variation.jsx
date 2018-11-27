@@ -23,9 +23,9 @@ const Variation = (props) => {
     return formattedMoves;
   }
   return (
-    <div className="Eval2">
+    <div className="Eval">
       <div className="movesTitle">Variation</div>
-      <div className="eval2Info"
+      <div className="EvalInfo"
         style={{
         "animationDurration": "1s",
         "animationName": `${isHiddenClass}`,

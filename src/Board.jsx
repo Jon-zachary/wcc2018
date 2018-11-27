@@ -4,7 +4,7 @@ import Chessboard from 'chessboardjsx';
 import MoveList from './MoveList.jsx';
 import Info from './Info.jsx';
 import GameHeader from './GameHeader.jsx';
-import Eval2 from './Eval2.jsx';
+import Eval from './Eval.jsx';
 import Variation from './Variation'
 import AllGames from './games/AllGames'
 
@@ -225,7 +225,7 @@ hideFrame() {
         />
         </div>
       <div className="column">
-        <Eval2
+        <Eval
           moves={this.state.moves}
           movesVerbose={this.state.movesVerbose}
           fen={this.state.fen}

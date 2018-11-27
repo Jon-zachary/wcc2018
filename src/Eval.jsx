@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Eval2 extends Component {
+class Eval extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -117,9 +117,9 @@ class Eval2 extends Component {
     movesArr.shift();
     const moves = this.formatMoves(movesArr);
     return(
-    <div className="Eval2">
+    <div className="Eval">
       <div className="movesTitle">Engine Evaluation</div>
-      <div className="eval2Info"
+      <div className="EvalInfo"
          style={{
          "animationDurration": "1s",
          "animationName": `${isHiddenClass}`,
@@ -144,4 +144,4 @@ class Eval2 extends Component {
   }
 }
 
-export default Eval2;
+export default Eval;
