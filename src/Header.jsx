@@ -1,7 +1,18 @@
 import React from 'react';
 import Player from './Player.jsx';
+import allGames from './games/AllGames.jsx';
 
 const Header = (props) => {
+  const createButtonList = (games) => {
+    const buttons = games.map((_, i) => {
+      return (
+        <button className="nav-button" onClick={props.handleButton}>
+          Game {i + 1}
+        </button>
+      )
+    });
+    return buttons;
+  }
   return (
   <div className="Header">
     <Player
@@ -12,14 +23,7 @@ const Header = (props) => {
       <p>World Chess Championship 2018</p>
       <p>Caruana Vs. Carlsen</p>
       <nav>
-      <button className="nav-button" onClick={props.handleButton}>Game 1</button>
-      <button className="nav-button" onClick={props.handleButton}>Game 2</button>
-      <button className="nav-button" onClick={props.handleButton}>Game 3</button>
-      <button className="nav-button" onClick={props.handleButton}>Game 4</button>
-      <button className="nav-button" onClick={props.handleButton}>Game 5</button>
-      <button className="nav-button" onClick={props.handleButton}>Game 6</button>
-      <button className="nav-button" onClick={props.handleButton}>Game 7</button>
-      <button className="nav-button" onClick={props.handleButton}>Game 8</button>
+      {createButtonList(allGames)}
       </nav>
     </div>
     <Player

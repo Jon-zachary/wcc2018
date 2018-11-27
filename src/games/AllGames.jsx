@@ -195,6 +195,95 @@ Qe8 25.Nc4 Qg6 26.Nxd6 Qxd6 27.h4 gxh4 28.Qxf4 Qxf4 29.Rxf4 h5
 30.Re1 Bg4 31.Rf6 Rxf6 32.Bxf6 Kf7 33.Bxh4 Re8 34.Rf1+ Kg8
 35.Rf6 Re2 36.Rg6+ Kf8 37.d6 Rd2 38.Rg5 1/2-1/2`
 
-const allGames = [game1, game2, game3, game4, game5, game6, game7, game8];
+const game9 = `[Event "Carlsen - Caruana World Championship Match"]
+[Site "1:34:33-0:55:33"]
+[Date "2018.11.21"]
+[EventDate "2018.11.09"]
+[Round "9"]
+[Result "1/2-1/2"]
+[White "Magnus Carlsen"]
+[Black "Fabiano Caruana"]
+[ECO "A29"]
+[WhiteElo "?"]
+[BlackElo "?"]
+[PlyCount "112"]
+
+1.c4 e5 2.Nc3 Nf6 3.Nf3 Nc6 4.g3 d5 5.cxd5 Nxd5 6.Bg2 Bc5
+7.O-O O-O 8.d3 Re8 9.Bg5 Nxc3 10.bxc3 f6 11.Bc1 Be6 12.Bb2 Bb6
+13.d4 Bd5 14.Qc2 exd4 15.cxd4 Be4 16.Qb3+ Bd5 17.Qd1 Bxf3
+18.Qb3+ Kh8 19.Bxf3 Nxd4 20.Bxd4 Qxd4 21.e3 Qe5 22.Bxb7 Rad8
+23.Rad1 Qe7 24.h4 g6 25.h5 gxh5 26.Qc4 f5 27.Bf3 h4 28.Rxd8
+Rxd8 29.gxh4 Rg8+ 30.Kh1 Qf6 31.Qf4 Bc5 32.Rg1 Rxg1+ 33.Kxg1
+Bd6 34.Qa4 f4 35.Qxa7 fxe3 36.Qxe3 Qxh4 37.a4 Qf6 38.Bd1 Qe5
+39.Qxe5+ Bxe5 40.a5 Kg7 41.a6 Bd4 42.Kg2 Kf6 43.f4 Bb6 44.Kf3
+h6 45.Ke4 Ba7 46.Bg4 Bg1 47.Kd5 Bb6 48.Kc6 Be3 49.Kb7 Bb6
+50.Bh3 Be3 51.Kc6 Bb6 52.Kd5 Ba7 53.Ke4 Bb6 54.Bf1 Ke6 55.Bc4+
+Kf6 56.Bd3 Ke6 1/2-1/2`
+
+const game10 = `[Event "Carlsen - Caruana World Championship Match"]
+[Site "London ENG"]
+[Date "2018.11.22"]
+[EventDate "2018.11.09"]
+[Round "10"]
+[Result "1/2-1/2"]
+[White "Fabiano Caruana"]
+[Black "Magnus Carlsen"]
+[ECO "B33"]
+[WhiteElo "?"]
+[BlackElo "?"]
+[PlyCount "107"]
+
+1.e4 c5 2.Nf3 Nc6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 e5 6.Ndb5 d6
+7.Nd5 Nxd5 8.exd5 Nb8 9.a4 Be7 10.Be2 O-O 11.O-O Nd7 12.b4 a6
+13.Na3 a5 14.bxa5 Rxa5 15.Nc4 Ra8 16.Be3 f5 17.a5 f4 18.Bb6
+Qe8 19.Ra3 Qg6 20.Bc7 e4 21.Kh1 b5 22.Nb6 Nxb6 23.Bxb6 Qg5
+24.g3 b4 25.Rb3 Bh3 26.Rg1 f3 27.Bf1 Bxf1 28.Qxf1 Qxd5 29.Rxb4
+Qe6 30.Rb5 Bd8 31.Qe1 Bxb6 32.axb6 Rab8 33.Qe3 Qc4 34.Rb2 Rb7
+35.Rd1 Qe2 36.Re1 Qxe3 37.Rxe3 d5 38.h4 Rc8 39.Ra3 Kf7 40.Kh2
+Ke6 41.g4 Rc6 42.Ra6 Ke5 43.Kg3 h6 44.h5 Kd4 45.Rb5 Rd6
+46.Ra4+ Ke5 47.Rab4 Ke6 48.c4 dxc4 49.Rxc4 Rdxb6 50.Rxe4+ Kf7
+51.Rf5+ Rf6 52.Rxf6+ Kxf6 53.Kxf3 Kf7 54.Kg3 1/2-1/2`
+
+const game11 = `[Event "Carlsen - Caruana World Championship Match"]
+[Site "1:34:33-0:59:33"]
+[Date "2018.11.24"]
+[EventDate "2018.11.09"]
+[Round "11"]
+[Result "1/2-1/2"]
+[White "Magnus Carlsen"]
+[Black "Fabiano Caruana"]
+[ECO "C42"]
+[WhiteElo "?"]
+[BlackElo "?"]
+[PlyCount "110"]
+
+1.e4 e5 2.Nf3 Nf6 3.Nxe5 d6 4.Nf3 Nxe4 5.Nc3 Nxc3 6.dxc3 Be7
+7.Be3 O-O 8.Qd2 Nd7 9.O-O-O Nf6 10.Bd3 c5 11.Rhe1 Be6 12.Kb1
+Qa5 13.c4 Qxd2 14.Bxd2 h6 15.Nh4 Rfe8 16.Ng6 Ng4 17.Nxe7+ Rxe7
+18.Re2 Ne5 19.Bf4 Nxd3 20.Rxd3 Rd7 21.Rxd6 Rxd6 22.Bxd6 Rd8
+23.Rd2 Bxc4 24.Kc1 b6 25.Bf4 Rxd2 26.Kxd2 a6 27.a3 Kf8 28.Bc7
+b5 29.Bd6+ Ke8 30.Bxc5 h5 31.Ke3 Kd7 32.Kd4 g6 33.g3 Be2
+34.Bf8 Kc6 35.b3 Bd1 36.Kd3 Bg4 37.c4 Be6 38.Kd4 bxc4 39.bxc4
+Bg4 40.c5 Be6 41.Bh6 Bd5 42.Be3 Be6 43.Ke5 Bd5 44.Kf4 Be6
+45.Kg5 Bd5 46.g4 hxg4 47.Kxg4 Ba2 48.Kg5 Bb3 49.Kf6 Ba2 50.h4
+Bb3 51.f4 Ba2 52.Ke7 Bb3 53.Kf6 Ba2 54.f5 Bb1 55.Bf2 Bc2
+1/2-1/2`
+
+const game12 = `[Event "Carlsen - Caruana World Championship Match"]
+[Site "0:08:33-0:38:33"]
+[Date "2018.11.26"]
+[EventDate "2018.11.09"]
+[Round "12"]
+[Result "1/2-1/2"]
+[White "Fabiano Caruana"]
+[Black "Magnus Carlsen"]
+[ECO "B33"]
+[WhiteElo "?"]
+[BlackElo "?"]
+[PlyCount "2"]
+
+1.e4 c5 2.Nf3 Nc6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 e5 6.Ndb5 d6 7.Nd5 Nxd5 8.exd5 Ne7 9.c4 Ng6 10.Qa4 Bd7 11.Qb4 Bf5 12.h4 h5 13.Qa4 Bd7 14.Qb4 Bf5 15.Be3 a6 16.Nc3 Qc7 17.g3 Be7 18.f3 Nf8 19.Ne4 Nd7 20.Bd3 O-O 21.Rh2 Rac8 22.O-O-O Bg6 23.Rc2 f5 24.Nf2 Nc5 25.f4 a5 26.Qd2 e4 27.Be2 Be8 28.Kb1 Bf6 29.Re1 a4 30.Qb4 g6 31.Rd1 Ra8  1/2-1/2`
+
+const allGames = [game1, game2, game3, game4, game5, game6, game7, game8, game9, game10, game11, game12];
 
 export default allGames;
