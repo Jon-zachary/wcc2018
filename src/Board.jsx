@@ -13,6 +13,7 @@ class Board extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isVarHidden: false,
       game: null,
       gameInfo: null,
       currentMove: 0,
@@ -34,6 +35,7 @@ class Board extends Component {
     this.updateGame = this.updateGame.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
     this.handleBackClick = this.handleBackClick.bind(this);
+    this.hideFrame = this.hideFrame.bind(this);
   }
 
   componentDidMount() {
@@ -172,7 +174,13 @@ handleBackClick() {
   })
 }
 
-
+hideFrame() {
+  this.setState((prevState) => {
+    return {
+      isVarHidden: !prevState.isVarHidden,
+    }
+  })
+}
 
   render() {
     return (
@@ -182,6 +190,8 @@ handleBackClick() {
           varMoves={this.state.varMoves}
           start={this.state.currentMove}
           handleBack={this.handleBackClick}
+          isVarHidden={this.state.isVarHidden}
+          hideFrame={this.hideFrame}
           />
         <MoveList
           moves={this.state.moves}

@@ -1,6 +1,9 @@
 import React from 'react';
 
 const Variation = (props) => {
+  let isHidden = false;
+  const isHiddenClass = (props.isVarHidden) ? 'hideEval' : 'showEval' ;
+  const hideShowButtonText = (props.isVarHidden) ? 'Show' : 'Hide';
   const { varMoves, start } = props;
   const formattedMoves = []
   function formatMoves(){
@@ -21,9 +24,15 @@ const Variation = (props) => {
   return (
     <div className="Eval2">
       <div className="movesTitle">Variation</div>
-      <div className="eval2Info">{formatMoves()}</div>
+      <div className="eval2Info"
+        style={{
+        "animationDurration": "1s",
+        "animationName": `${isHiddenClass}`,
+        }}
+        >{formatMoves()}</div>
       <div className="eval-button-wrapper">
       <button onClick={props.handleBack}>Back to mainline</button>
+      <button onClick={props.hideFrame}>{hideShowButtonText}</button>
       </div>
     </div>
   )

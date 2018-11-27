@@ -137,8 +137,6 @@ class Eval2 extends Component {
         <div className="pv">Computer Variation: {moves}</div>
       </div>
       <div className={"eval-button-wrapper"}>
-      <button onClick={this.startSf}>Start</button>
-      <button onClick={this.stopSf}>Stop</button>
       <button onClick={this.hideEvalFrame}> {hideShowButtonText } </button>
       </div>
     </div>
