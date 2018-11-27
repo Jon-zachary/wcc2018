@@ -4,8 +4,8 @@ const MoveList = (props) => {
   const start = props.start || 0;
   const result = (props.gameInfo) ? props.gameInfo.Result : '';
   const formattedMoves = []
-  let active = 'highlight';
     props.moves.forEach((m, i) => {
+      const active  = (props.currentMove === i + 1) ? 'highlight' : undefined;
       if (i >= start) {
       let mvNum = (i % 2 === 0) ? `${(i / 2) + 1}.` : null;
       if (start % 2 === 1 && i === start) {
@@ -14,9 +14,9 @@ const MoveList = (props) => {
       formattedMoves.push(
         <span
           key={i}
-          className={(props.currentMove === i + 1) ? active : undefined}
-          onClick={(evt) => props.handleMoveClick(evt,i + 1)}>
-          {mvNum} <button className="link-button">{m}</button>
+          onClick={(evt) => props.handleMoveClick(evt,i + 1)}
+          >
+          {mvNum} <button className={`link-button ${active}`}>{m}</button>
           {(!mvNum) || (start % 2 === 1 && i === start) ? <br/> : ''}
         </span>
       )

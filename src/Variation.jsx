@@ -1,5 +1,6 @@
 import React from 'react';
 
+// TODO: add inc, dec, and move highlighting to variations
 const Variation = (props) => {
   const { varMoves, start, isVarHidden } = props;
   const isHiddenClass = (isVarHidden) ? 'hideEval' : 'showEval' ;
@@ -7,13 +8,8 @@ const Variation = (props) => {
   const formattedMoves = []
   function formatMoves(){
     varMoves.forEach((m, i) => {
-      let halfMoveNum = i + start;
-      // If halfMoveNum is even then declare moveNum var equal to halfMoveNum
-      // Plus one, otherwise moveNum is null.
+      const halfMoveNum = i + start;
       let mvNum = ((halfMoveNum) % 2 === 0) ? `${(halfMoveNum / 2) + 1 }.` : null;
-
-      // If the first halfmoves is odd then moveNum is equal to previous halfMoveNum
-      // Plus the string '...'. This works but leaves out line break on first move
       if (halfMoveNum % 2 === 1 && i === 0) {
         mvNum = `${Math.ceil(i + start / 2)}. \u2026`;
       }
@@ -24,7 +20,6 @@ const Variation = (props) => {
         </span>
       )
     })
-    console.log(formattedMoves);
     return formattedMoves;
   }
   return (

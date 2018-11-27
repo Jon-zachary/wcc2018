@@ -95,11 +95,6 @@ button {
   outline: none;
 }
 
-.link-button:hover,
-.link-button:focus {
-text-decoration: none;
-}
-
 .game-header {
   text-align: center;
 }
