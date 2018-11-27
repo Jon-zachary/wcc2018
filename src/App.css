@@ -145,7 +145,6 @@ button {
 
 .moves {
   width: 350px;
-  columns: 2;
   font-size: 1.25em;
   overflow-y: scroll;
   background-color: #f5f2e9;
@@ -287,7 +286,6 @@ meter::-webkit-meter-optimum-value {
 @keyframes hideEval {
   from {
     height: 100%;
-
   }
   to {
     height: 0%;
@@ -295,6 +293,25 @@ meter::-webkit-meter-optimum-value {
 }
 
 @keyframes showEval {
+  from {
+    height: 0%;
+  }
+  to {
+    height: 100%;
+  }
+}
+
+@keyframes hideMoveList {
+  from {
+    height: 100%;
+  }
+  to {
+    height: 0%;
+  }
+}
+
+@keyframes showMoveList {
+
   from {
     height: 0%;
   }

@@ -4,7 +4,7 @@ const MoveList = (props) => {
   const start = props.start || 0;
   const result = (props.gameInfo) ? props.gameInfo.Result : '';
   const isMovHidden = props.isMovHidden;
-  const isHiddenClass = (isMovHidden) ? 'hideEval' : 'showEval' ;
+  const isHiddenClass = (isMovHidden) ? 'hideMoveList' : 'showMoveList' ;
   const hideShowButtonText = (isMovHidden) ? 'Show' : 'Hide';
   const formattedMoves = []
     props.moves.forEach((m, i) => {
@@ -34,8 +34,7 @@ const MoveList = (props) => {
         "animationDurration": "1s",
         "animationName": `${isHiddenClass}`,
         }}>
-      <span>{formattedMoves}</span>
-      <div>{result}</div>
+      <span>{formattedMoves} {result}</span>
       </div>
       <div className = "eval-button-wrapper">
         <button onClick={props.hideMovFrame}>{hideShowButtonText}</button>
