@@ -16,7 +16,7 @@ const MoveList = (props) => {
           key={i}
           className={(props.currentMove === i + 1) ? active : undefined}
           onClick={(evt) => props.handleMoveClick(evt,i + 1)}>
-          {mvNum} {m}
+          {mvNum} <button className="link-button">{m}</button>
           {(!mvNum) || (start % 2 === 1 && i === start) ? <br/> : ''}
         </span>
       )
