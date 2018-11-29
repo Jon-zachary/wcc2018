@@ -154,7 +154,7 @@ class Board extends Component {
   }
 
   handleBackClick = () => {
-    const currentMove = this.state.currentMove + 1;
+    const currentMove = this.state.currentMove;
     const game = new Chess();
     const moves = this.state.moves.slice(0, currentMove);
     moves.forEach(move => game.move(move))

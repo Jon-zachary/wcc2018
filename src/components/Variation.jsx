@@ -20,7 +20,6 @@ const Variation = (props) => {
         style={animationStyle}
         >
       <StyledMoves
-        
         varMoves={varMoves}
         currentMove={start}
         />
