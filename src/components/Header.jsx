@@ -1,6 +1,6 @@
 import React from 'react';
 import Player from './Player.jsx';
-import allGames from './games/AllGames.jsx';
+import allGames from '../games/AllGames.jsx';
 
 // TODO: minimize when game is selected.
 const Header = (props) => {

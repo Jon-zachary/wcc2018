@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Header from './Header.jsx';
+import Header from './components/Header';
 import './App.css';
-import Board from './Board.jsx';
+import Board from './components/Board';
 
 class App extends Component {
   constructor(props) {

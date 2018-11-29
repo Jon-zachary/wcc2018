@@ -6,7 +6,7 @@ import Info from './Info';
 import GameHeader from './GameHeader';
 import Eval from './Eval';
 import Variation from './Variation'
-import AllGames from './games/AllGames'
+import AllGames from '../games/AllGames'
 
 class Board extends Component {
 
