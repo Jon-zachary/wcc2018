@@ -206,13 +206,7 @@ class Board extends Component {
           getResult={this.getResult}
           currentMove={this.state.currentMove}
           title={"Move List"}
-          start={0}
           showTitle={true}
-          handleInc={this.handleInc}
-          handleDec={this.handleDec}
-          handleReset={this.handleReset}
-          handleFinal={this.handleFinal}
-          handleFlip={this.handleFlip}
           gameInfo={this.state.gameInfo}
           hideMovFrame={this.hideMovFrame}
           isMovHidden={this.state.isMovHidden}

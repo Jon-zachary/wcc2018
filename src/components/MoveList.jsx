@@ -1,4 +1,5 @@
 import React from 'react';
+import StyledMoves from './StyledMoves';
 
 const MoveList = (props) => {
 
@@ -12,35 +13,20 @@ const MoveList = (props) => {
     "animationName": `${isHiddenClass}`,
   }
 
-  const formatMoves = () => {
-  const formattedMoves = []
-  moves.forEach((m, i) => {
-    const active  = (currentMove === i + 1) ? 'highlight' : undefined;
-    if (i >= start) {
-    let mvNum = (i % 2 === 0) ? `${(i / 2) + 1}.` : null;
-    if (start % 2 === 1 && i === start) {
-      mvNum = `${Math.ceil(i / 2)}. ...`;
-    }
-    formattedMoves.push(
-      <span
-        key={i}
-        onClick={(evt) => props.handleMoveClick(evt,i + 1)}
-        >
-        {mvNum} <button className={`link-button ${active}`}>{m}</button>
-        {(!mvNum) || (start % 2 === 1 && i === start) ? <br/> : ''}
-      </span>
-      );
-    }
-  });
-  return formattedMoves;
-}
-
   return(
     <div className="InfoCard">
       <div className="InfoCard-title">{props.title}</div>
       <div className="InfoCard-info"
         style={animationStyle}>
-      <span>{formatMoves()} {result}</span>
+      <span>
+        <StyledMoves
+          varMoves={[]}
+          mainMoves={moves}
+          currentMove={currentMove}
+          handleMoveClick={props.handleMoveClick}
+          />
+         {result}
+       </span>
       </div>
       <div className = "InfoCard-button-wrapper">
         <button onClick={hideMovFrame}>{hideShowButtonText}</button>
