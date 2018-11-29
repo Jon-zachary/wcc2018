@@ -150,3 +150,9 @@ console.log(msToDate(time));
 // I had to ditch the two column approach on the movelist I want to style the moves
 // I think a single StyledMoves component is doable. First step is to gather all 3
 // versions I have working now and see what's diff/same.
+
+// Step 3 is good. I need to either add highlight and move click support for eval
+// and variations or stop them from looking the same as the main movelist. All in
+// all a very productive night. I'm glad that I have a reusable styled move component,
+// I think it will make it easier to have a single info card component. Mayebe I can
+// even use render props woohoo!
