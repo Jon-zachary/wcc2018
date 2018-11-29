@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import StyledMoves from './StyledMoves';
 
-// TODO: bugfix for not displaying black advantage in neg cps. In fact the whole
-// parseEval is kind of foobar. Fixed the negative problem but still unhappy with
-// Engine display.
 class Eval extends Component {
   constructor(props) {
     super(props)

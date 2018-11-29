@@ -3,7 +3,7 @@ import StyledMoves from './StyledMoves';
 
 const MoveList = (props) => {
 
-  const {start, gameInfo, isMovHidden, currentMove, hideMovFrame, moves} = props;
+  const {gameInfo, isMovHidden, currentMove, hideMovFrame, moves} = props;
   const result = (gameInfo) ? gameInfo.Result : '';
   const isHiddenClass = (isMovHidden) ? 'hide-InfoCard-info' : 'show-InfoCard-info' ;
   const hideShowButtonText = (isMovHidden) ? 'Show' : 'Hide';
