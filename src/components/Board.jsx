@@ -244,7 +244,6 @@ class Board extends Component {
         <Eval
           moves={this.state.moves}
           varMoves={this.state.varMoves}
-          movesVerbose={this.state.movesVerbose}
           fen={this.state.fen}
           currentMove={this.state.currentMove}
           handleMoveClick={this.handleMoveClick}

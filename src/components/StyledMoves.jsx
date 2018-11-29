@@ -3,8 +3,10 @@ import React from 'react';
 const StyledMoves = (props) => {
     const {mainMoves, varMoves, currentMove: start} = props;
     const formattedMoves = [] // for results
+    let moves=[];
+    if (mainMoves) moves = mainMoves;
     // If in variation use those moves, otherwise use main. Eval count as variations?
-    const moves = (varMoves.length > 0) ? varMoves : mainMoves;
+    if (varMoves.length > 0) moves = varMoves;
 
     moves.forEach((m, i) => {
       // sets the current half move, if start is 0 then regular move list

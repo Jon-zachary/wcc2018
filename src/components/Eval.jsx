@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import StyledMoves from './StyledMoves';
 
 // TODO: bugfix for not displaying black advantage in neg cps. In fact the whole
 // parseEval is kind of foobar. Fixed the negative problem but still unhappy with
@@ -85,7 +86,6 @@ class Eval extends Component {
     const cpRE =  /cp (.?\d+)/;
     const cpM = str.match(cpRE);
     const cp = (cpM) ? cpM[1] : this.state.cp;
-    console.log(cp);
     //regex for pv
     const pvRE = /(?<=pvSan).*?(?=bmc)/
     const pvM = str.match(pvRE);
@@ -110,7 +110,7 @@ class Eval extends Component {
 
     movesArr.pop();
     movesArr.shift();
-    const moves = this.formatMoves(movesArr);
+    // const moves = this.formatMoves(movesArr);
     return(
     <div className="InfoCard">
       <div className="InfoCard-title">Engine Evaluation</div>
@@ -126,7 +126,12 @@ class Eval extends Component {
             optimum= "0"
             >
         </meter>
-        <div className="Eval-principal-var">Computer Variation: {<br/>} {moves}</div>
+        <div className="Eval-principal-var">Computer Variation: {<br/>}
+          <StyledMoves
+            varMoves={movesArr}
+            currentMove={this.props.currentMove + this.props.varMoves.length}
+            />
+        </div>
       </div>
       <div className={"InfoCard-button-wrapper"}>
       <button onClick={this.hideEvalFrame}> {hideShowButtonText } </button>
