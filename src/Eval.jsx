@@ -114,7 +114,7 @@ class Eval extends Component {
     const isHiddenClass = (this.state.isHidden) ? 'hide-InfoCard-info' : 'show-InfoCard-info' ;
     const hideShowButtonText = (this.state.isHidden) ? 'Show' : 'Hide';
 
-    const evalInfoStyle = {
+    const animationStyle = {
       animationDurration: "1s",
       animationName: `${isHiddenClass}`,
     }
@@ -126,7 +126,7 @@ class Eval extends Component {
     <div className="InfoCard">
       <div className="InfoCard-title">Engine Evaluation</div>
       <div className="InfoCard-info"
-         style={evalInfoStyle}>
+         style={animationStyle}>
         <p>Best move: {this.state.pv.split(' ')[1]}</p>
           <span>score:{(this.state.cp / 100) || 'Calculating'}</span>
           <meter

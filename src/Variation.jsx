@@ -6,7 +6,7 @@ const Variation = (props) => {
   const isHiddenClass = (isVarHidden) ? 'hide-InfoCard-info' : 'show-InfoCard-info' ;
   const hideShowButtonText = (isVarHidden) ? 'Show' : 'Hide';
 
-  const evalInfoStyle = {
+  const animationStyle = {
     animationDurration: "1s",
     animationName: `${isHiddenClass}`,
   }
@@ -33,7 +33,7 @@ const Variation = (props) => {
     <div className="InfoCard">
       <div className="InfoCard-title">Variation</div>
       <div className="InfoCard-info"
-        style={evalInfoStyle}
+        style={animationStyle}
         >{formatMoves()}</div>
       <div className="InfoCard-button-wrapper">
       <button onClick={props.handleBack}>Back to mainline</button>

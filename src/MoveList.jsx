@@ -7,7 +7,7 @@ const MoveList = (props) => {
   const isHiddenClass = (isMovHidden) ? 'hide-InfoCard-info' : 'show-InfoCard-info' ;
   const hideShowButtonText = (isMovHidden) ? 'Show' : 'Hide';
 
-  const movesStyle = {
+  const animationStyle = {
     "animationDurration": "1s",
     "animationName": `${isHiddenClass}`,
   }
@@ -39,7 +39,7 @@ const MoveList = (props) => {
     <div className="InfoCard">
       <div className="InfoCard-title">{props.title}</div>
       <div className="InfoCard-info"
-        style={movesStyle}>
+        style={animationStyle}>
       <span>{formatMoves()} {result}</span>
       </div>
       <div className = "InfoCard-button-wrapper">

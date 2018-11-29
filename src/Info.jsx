@@ -7,7 +7,7 @@ const Info = (props) => {
   const {isInfoHidden, hideInfoFrame} = props
   const isHiddenClass = (isInfoHidden) ? 'hide-InfoCard-info' : 'show-InfoCard-info' ;
   const hideShowButtonText = (isInfoHidden) ? 'Show' : 'Hide';
-  const gameInfoStyle = {
+  const animationStyle = {
     animationDurration: "1s",
     animationName: `${isHiddenClass}`,
   }
@@ -15,7 +15,7 @@ const Info = (props) => {
     <div className="InfoCard">
       <div className="InfoCard-title">Game Information</div>
         <div className="InfoCard-info"
-          style={gameInfoStyle}>
+          style={animationStyle}>
           <p>Event: World Championship</p>
           <p>Date: {Date}</p>
           <p>Round: {Round}</p>
