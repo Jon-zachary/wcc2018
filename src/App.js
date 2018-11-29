@@ -10,10 +10,9 @@ class App extends Component {
     this.state = {
       gameNumber: 1,
     }
-    this.handleGameButton = this.handleGameButton.bind(this);
   }
 
-  handleGameButton(e) {
+  handleGameButton = (e) => {
   const gameNumber = +e.target.textContent.split(' ')[1];
    this.setState({
      gameNumber,

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 class Eval extends Component {
   constructor(props) {
     super(props)
@@ -56,7 +55,8 @@ class Eval extends Component {
   }
 
   formatMoves = (moves) => {
-    const start = this.props.currentMove;
+    const varLength = this.props.varMoves.length;
+    const start = this.props.currentMove + varLength;
     const formattedMoves = []
     let active = 'highlight';
       moves.forEach((m, i) => {
@@ -113,6 +113,12 @@ class Eval extends Component {
     const movesArr = rawMoves.split(' ')
     const isHiddenClass = (this.state.isHidden) ? 'hideEval' : 'showEval' ;
     const hideShowButtonText = (this.state.isHidden) ? 'Show' : 'Hide';
+
+    const evalInfoStyle = {
+      animationDurration: "1s",
+      animationName: `${isHiddenClass}`,
+    }
+
     movesArr.pop();
     movesArr.shift();
     const moves = this.formatMoves(movesArr);
@@ -120,10 +126,7 @@ class Eval extends Component {
     <div className="Eval">
       <div className="movesTitle">Engine Evaluation</div>
       <div className="EvalInfo"
-         style={{
-         "animationDurration": "1s",
-         "animationName": `${isHiddenClass}`,
-         }}>
+         style={evalInfoStyle}>
         <p>Best move: {this.state.pv.split(' ')[1]}</p>
           <span>score:{(this.state.cp / 100) || 'Calculating'}</span>
           <meter

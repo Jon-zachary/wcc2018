@@ -5,8 +5,14 @@ const Variation = (props) => {
   const { varMoves, start, isVarHidden } = props;
   const isHiddenClass = (isVarHidden) ? 'hideEval' : 'showEval' ;
   const hideShowButtonText = (isVarHidden) ? 'Show' : 'Hide';
-  const formattedMoves = []
-  function formatMoves(){
+
+  const evalInfoStyle = {
+    animationDurration: "1s",
+    animationName: `${isHiddenClass}`,
+  }
+
+  const formatMoves = () => {
+    const formattedMoves = []
     varMoves.forEach((m, i) => {
       const halfMoveNum = i + start;
       let mvNum = ((halfMoveNum) % 2 === 0) ? `${(halfMoveNum / 2) + 1 }.` : null;
@@ -22,14 +28,12 @@ const Variation = (props) => {
     })
     return formattedMoves;
   }
+
   return (
     <div className="Eval">
       <div className="movesTitle">Variation</div>
       <div className="EvalInfo"
-        style={{
-        "animationDurration": "1s",
-        "animationName": `${isHiddenClass}`,
-        }}
+        style={evalInfoStyle}
         >{formatMoves()}</div>
       <div className="eval-button-wrapper">
       <button onClick={props.handleBack}>Back to mainline</button>

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Chess from 'chess.js';
 import Chessboard from 'chessboardjsx';
-import MoveList from './MoveList.jsx';
-import Info from './Info.jsx';
-import GameHeader from './GameHeader.jsx';
-import Eval from './Eval.jsx';
+import MoveList from './MoveList';
+import Info from './Info';
+import GameHeader from './GameHeader';
+import Eval from './Eval';
 import Variation from './Variation'
 import AllGames from './games/AllGames'
 
@@ -26,20 +26,6 @@ class Board extends Component {
       evalDepth: 5,
       fen: null,
     }
-    this.handleInc = this.handleInc.bind(this);
-    this.handleDec = this.handleDec.bind(this);
-    this.handleFlip = this.handleFlip.bind(this);
-    this.handleReset = this.handleReset.bind(this);
-    this.handleFinal = this.handleFinal.bind(this);
-    this.handleEval = this.handleEval.bind(this);
-    this.handleSlide = this.handleSlide.bind(this);
-    this.handleMoveClick = this.handleMoveClick.bind(this);
-    this.updateGame = this.updateGame.bind(this);
-    this.handleDrop = this.handleDrop.bind(this);
-    this.handleBackClick = this.handleBackClick.bind(this);
-    this.hideFrame = this.hideFrame.bind(this);
-    this.hideMovFrame = this.hideMovFrame.bind(this);
-    this.hideInfoFrame = this.hideInfoFrame.bind(this);
   }
 
   componentDidMount() {
@@ -52,7 +38,7 @@ class Board extends Component {
     }
   }
 
-  updateGame(gameNumber) {
+  updateGame = (gameNumber) =>{
     const game = new Chess();
     const pgnString = AllGames[gameNumber - 1]
     game.load_pgn(pgnString);
@@ -71,14 +57,14 @@ class Board extends Component {
     })
   }
 
-  handleEval(e) {
+  handleEval = (e) => {
     this.setState({
       isEval: !this.state.isEval,
     });
   }
 
 
- handleInc(e) {
+ handleInc = (e) => {
     const currentMove = this.state.currentMove + 1;
     const game = new Chess();
     const moves = this.state.moves.slice(0, currentMove);
@@ -91,7 +77,7 @@ class Board extends Component {
     })
   }
 
-  handleDec(e) {
+  handleDec = (e) => {
     const currentMove = this.state.currentMove - 1;
     const game = new Chess();
     const moves = this.state.moves.slice(0, currentMove);
@@ -104,20 +90,20 @@ class Board extends Component {
     })
   }
 
-  handleSlide(e) {
+  handleSlide = (e) => {
     this.setState({
       evalDepth: e.target.value,
     })
   }
 
-  handleFlip(e) {
+  handleFlip = (e) => {
     const side = (this.state.orientation === 'white') ? 'black' : 'white'
     this.setState({
       orientation: side,
     })
   }
 
-  handleReset(e) {
+  handleReset = (e) => {
     const game = new Chess();
     const fen = game.fen();
     this.setState({
@@ -127,7 +113,7 @@ class Board extends Component {
     })
   }
 
-  handleFinal(e) {
+  handleFinal = (e) => {
     const game = new Chess();
     const pgnString = AllGames[this.props.gameNumber - 1]
     game.load_pgn(pgnString);
@@ -139,7 +125,7 @@ class Board extends Component {
     })
   }
 
-  handleMoveClick(evt, index) {
+  handleMoveClick = (evt, index) => {
     const game = new Chess();
     const moves = this.state.moves.slice(0, index);
     moves.forEach(move => game.move(move))
@@ -153,56 +139,55 @@ class Board extends Component {
   })
 }
 
-handleDrop({sourceSquare, targetSquare, piece}) {
-  const game = new Chess(this.state.fen);
-  game.move({
-    to: targetSquare,
-    from: sourceSquare,
-  });
-  this.setState((prevState) => {
-    return {
-    fen: game.fen(),
-    varMoves: [...prevState.varMoves,...game.history()],
-    }
-  })
-}
+  handleDrop = ({sourceSquare, targetSquare, piece}) => {
+    const game = new Chess(this.state.fen);
+    game.move({
+      to: targetSquare,
+      from: sourceSquare,
+    });
+    this.setState((prevState) => {
+      return {
+      fen: game.fen(),
+      varMoves: [...prevState.varMoves,...game.history()],
+      }
+    })
+  }
 
-handleBackClick() {
-  const currentMove = this.state.currentMove + 1;
-  const game = new Chess();
-  const moves = this.state.moves.slice(0, currentMove);
-  moves.forEach(move => game.move(move))
-  const fen = game.fen()
-  this.setState({
-    fen,
-    varMoves: []
-  })
-}
+  handleBackClick = () => {
+    const currentMove = this.state.currentMove + 1;
+    const game = new Chess();
+    const moves = this.state.moves.slice(0, currentMove);
+    moves.forEach(move => game.move(move))
+    const fen = game.fen()
+    this.setState({
+      fen,
+      varMoves: []
+    })
+  }
 
-hideFrame() {
-  this.setState((prevState) => {
-    return {
-      isVarHidden: !prevState.isVarHidden,
-    }
-  })
-}
+  hideFrame = () => {
+    this.setState((prevState) => {
+      return {
+        isVarHidden: !prevState.isVarHidden,
+      }
+    })
+  }
 
-hideMovFrame() {
-  console.log('inside hide move');
-  this.setState((prevState) => {
-    return {
-      isMovHidden: !prevState.isMovHidden
-    }
-  })
-}
+  hideMovFrame = () => {
+    this.setState((prevState) => {
+      return {
+        isMovHidden: !prevState.isMovHidden
+      }
+    })
+  }
 
-hideInfoFrame() {
-  this.setState((prevState) => {
-    return {
-      isInfoHidden: !prevState.isInfoHidden
-    }
-  })
-}
+  hideInfoFrame = () => {
+    this.setState((prevState) => {
+      return {
+        isInfoHidden: !prevState.isInfoHidden
+      }
+    })
+  }
 
   render() {
     return (
@@ -258,6 +243,7 @@ hideInfoFrame() {
       <div className="column">
         <Eval
           moves={this.state.moves}
+          varMoves={this.state.varMoves}
           movesVerbose={this.state.movesVerbose}
           fen={this.state.fen}
           currentMove={this.state.currentMove}

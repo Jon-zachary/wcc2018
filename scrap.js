@@ -70,3 +70,12 @@ console.log(msToDate(time));
 } */
 
 // style={{"backgroundColor": `${isHiddenColorClass}`}}
+
+// Goals for refactoring:
+// 1) Bring some semblance of consistency to code style
+  // a) all methods will be arrow functions instead of bound in constructor
+  // b) css will have consistent naming conventions.
+// 2) Find a way to reuse code for the info, var, ml, and eval comps
+//  they share enough in common that there should be a way to make their
+//  comonalitites portable.
+// 3) Find a way to reuse format move function.
