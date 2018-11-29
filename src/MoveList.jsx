@@ -42,7 +42,7 @@ const MoveList = (props) => {
         style={movesStyle}>
       <span>{formatMoves()} {result}</span>
       </div>
-      <div className = "eval-button-wrapper">
+      <div className = "InfoCard-button-wrapper">
         <button onClick={hideMovFrame}>{hideShowButtonText}</button>
       </div>
     </div>

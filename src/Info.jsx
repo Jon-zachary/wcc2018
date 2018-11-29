@@ -24,7 +24,7 @@ const Info = (props) => {
           <p>ECO: {ECO}</p>
           <p>Result: {Result}</p>
       </div>
-      <div className = "eval-button-wrapper">
+      <div className = "InfoCard-button-wrapper">
         <button onClick={hideInfoFrame}>{hideShowButtonText}</button>
       </div>
     </div>

@@ -35,7 +35,7 @@ const Variation = (props) => {
       <div className="EvalInfo"
         style={evalInfoStyle}
         >{formatMoves()}</div>
-      <div className="eval-button-wrapper">
+      <div className="InfoCard-button-wrapper">
       <button onClick={props.handleBack}>Back to mainline</button>
       <button onClick={props.hideFrame}>{hideShowButtonText}</button>
       </div>

@@ -139,7 +139,7 @@ class Eval extends Component {
         </meter>
         <div className="pv">Computer Variation: {moves}</div>
       </div>
-      <div className={"eval-button-wrapper"}>
+      <div className={"InfoCard-button-wrapper"}>
       <button onClick={this.hideEvalFrame}> {hideShowButtonText } </button>
       </div>
     </div>

@@ -6,20 +6,22 @@
 * {
   box-sizing: border-box;
 }
-html {
-  height: 100%;
-}
-body {
-  height: 100%;
-}
+
 .App {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color:#ffbf007d;
-  height: 100%;
+}
+
+.Header {
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+  background-color: #6390B5;
+  justify-content: space-around;
 }
 
 .Title {
@@ -35,26 +37,29 @@ body {
   margin:0 0 10px;
 }
 
+/* Game selection buttons, maybe rename. */
  nav {
   display: flex;
   margin-top: 10 px;
   margin-bottom: 10px;
 }
 
+/* Having order: 1 on the three children of the header is probably bad.*/
 .Player {
   order: 1;
   margin: 0 5%;
   text-align: center;
 }
 
-.Player-Title {
+.Player-name {
   font-size: 1em;
   margin-bottom: 1%;
 }
 
-.button-wrapper {
-  display: flex;
-  justify-content: flex-end;
+.InfoCard-button-wrapper {
+  border: solid black 1px;
+  text-align: center;
+  background-color: #f5f2e9
 }
 
 button {
@@ -62,22 +67,13 @@ button {
   margin: 0 1%;
 }
 
-.Header {
-  width: 100%;
-  height: fit-content;
-  display: flex;
-  flex-direction: row;
-  flex-wrap:wrap;
-  background-color: #6390B5;
-  justify-content: space-around;
-}
-
-.game-container {
+.main-body-container {
   display:flex;
   justify-content: space-around;
   width:100%;
 }
 
+/* TODO: add focus/tab support so that you can tab through moves, better for a11y */
 .link-button {
   background-color: transparent;
   border: none;
@@ -92,41 +88,25 @@ button {
   outline: none;
 }
 
-.game-header {
-  text-align: center;
-}
-
 .board-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  flex-wrap: wrap;
   margin-bottom: 5%;
   margin-top: 2%;
-}
-
-.multi-board {
-  display: flex;
-  flex-wrap:wrap;
 }
 
 .highlight {
   background-color: #C0D6E5;
 }
 
-.currentDepth {
+/* Only used in slider component, not implemented currently */
+
+/* .current-depth {
   text-align: center;
   margin: 0;
 }
 
-.depthLabel {
+.depth-label {
   margin: 33%;
-}
-
-.evaluation {
-  display: flex;
-  justify-content: flex-end;
-}
+} */
 
 .varEval {
   text-align: center;
@@ -256,12 +236,6 @@ meter::-webkit-meter-optimum-value {
 
 .EvalInfo p {
   margin-top: 0;
-}
-
-.eval-button-wrapper {
-  border: solid black 1px;
-  text-align: center;
-  background-color: #f5f2e9
 }
 
 .pv {

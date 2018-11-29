@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import CountDown from './CountDown.jsx';
 import Header from './Header.jsx';
 import './App.css';
 import Board from './Board.jsx';

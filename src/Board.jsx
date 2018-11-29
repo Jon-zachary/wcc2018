@@ -191,7 +191,7 @@ class Board extends Component {
 
   render() {
     return (
-      <div className="game-container">
+      <div className="main-body-container">
         <div className = 'column'>
         <Variation
           varMoves={this.state.varMoves}

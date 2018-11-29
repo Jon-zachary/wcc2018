@@ -3,7 +3,7 @@ import React from 'react';
 const Slider = (props) => {
   return (
     <div className="slider">
-    <label className="depthLabel" htmlFor="depth">Depth</label>
+    <label className="depth-label" htmlFor="depth">Depth</label>
     <br/>
     <input
       id="depth"
@@ -15,7 +15,7 @@ const Slider = (props) => {
       onChange={props.onChange}
       value={props.val}
       ></input>
-      <p className="currentDepth">{props.val}</p>
+      <p className="current-depth">{props.val}</p>
       </div>
   )
 }
