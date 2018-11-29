@@ -36,9 +36,9 @@ const MoveList = (props) => {
 }
 
   return(
-    <div className="movelist">
-      <div className="movesTitle">{props.title}</div>
-      <div className="moves"
+    <div className="MoveList">
+      <div className="InfoCard-title">{props.title}</div>
+      <div className="MoveList-moves"
         style={movesStyle}>
       <span>{formatMoves()} {result}</span>
       </div>

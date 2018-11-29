@@ -12,9 +12,9 @@ const Info = (props) => {
     animationName: `${isHiddenClass}`,
   }
   return(
-    <div className="movelist">
-      <div className="movesTitle">Game Information</div>
-        <div className="gameInfo"
+    <div className="MoveList">
+      <div className="InfoCard-title">Game Information</div>
+        <div className="game-info"
           style={gameInfoStyle}>
           <p>Event: World Championship</p>
           <p>Date: {Date}</p>

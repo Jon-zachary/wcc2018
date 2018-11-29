@@ -31,7 +31,7 @@ const Variation = (props) => {
 
   return (
     <div className="Eval">
-      <div className="movesTitle">Variation</div>
+      <div className="InfoCard-title">Variation</div>
       <div className="EvalInfo"
         style={evalInfoStyle}
         >{formatMoves()}</div>

@@ -108,14 +108,7 @@ button {
   margin: 33%;
 } */
 
-.varEval {
-  text-align: center;
-}
-
-.movesEval {
-  display: flex;
-}
-.movelist {
+.MoveList {
   display: flex;
   flex-direction: column;
   margin-bottom: 10%;
@@ -123,7 +116,7 @@ button {
   width: 350px;
 }
 
-.moves {
+.MoveList-moves {
   width: 350px;
   font-size: 1.25em;
   overflow-y: scroll;
@@ -134,7 +127,7 @@ button {
   animation-duration: 1s;
 }
 
-.movesTitle {
+.InfoCard-title {
   width: fit-container;
   text-align: center;
   line-height: 2.3em;
@@ -144,23 +137,11 @@ button {
   border: solid black 1px;
 }
 
-.info {
-  height: 300px;
-  overflow-y:auto;
-  background-color: #f5f2e9;
-}
-
-.pv {
+.Eval-principal-var {
   background-color: #f5f2e9;
   height: 300px;
+  margin-top: 5%;
   overflow-y: auto;
-}
-
-.eval-container {
-  width: 300px;
-  height: 300px;
-  align-self: center;
-  margin: 0 5% 5%;
 }
 
 meter {
@@ -171,6 +152,7 @@ meter::-webkit-meter-bar {
   background: none;
   background-color: Black;
   box-shadow: 0 5px 5px -5px #333 inset;
+  border: solid #6390B5 1px;
 }
 
 meter::-webkit-meter-optimum-value {
@@ -178,17 +160,7 @@ meter::-webkit-meter-optimum-value {
   background-color: White;
 }
 
-.move-button-wrapper {
-  height: 90px;
-  text-align: center;
-  border: solid black 1px;
-}
-
-.move-button-wrapper button {
-  margin: 2% 1%;
-}
-
-.gameInfo {
+.game-info {
   font-size: 1.25em;
   font-weight: 500;
   overflow-y: auto;
@@ -197,16 +169,11 @@ meter::-webkit-meter-optimum-value {
   animation-duration: 1s;
 }
 
-.gameInfo p {
+.game-info p {
   margin: 10px;
 }
 
 .GameHeader {
-  font-size:1em;
-  text-align: center;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
   background-color: #b563b2c2;
   border: black solid 1px;
 }
@@ -236,10 +203,6 @@ meter::-webkit-meter-optimum-value {
 
 .EvalInfo p {
   margin-top: 0;
-}
-
-.pv {
-  margin-top: 5%;
 }
 
 .column {

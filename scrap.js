@@ -106,5 +106,24 @@ console.log(msToDate(time));
 // 11. change currentDepth to current-depth. not used now but i may use slider
 // comp in future if I get eval working smoother.
 // 12. change depthLevel to depth-level, see above.
-// 13. remove evaluation. all good.
-// 14.
+// 13. remove evaluation. all good. git commit here.
+// 14. remove varEval. all good.
+// 15. remove movesEval. all good.
+// 16. change movelist to MoveList to reflect that it's applied to top div of
+// component, will hopefully be able to change to something generic after a
+// refactor.
+// 17. Changed .moves to MoveList-moves to better show relationship. The whole
+// Concept of moves is really a mess right now, shouldn't matter what component
+// they're viewed in.
+// 18. changed movesTitle to InfoCard-title again with the optimism.
+// 19. remove .info, all good. what a big name for a do nothing class.
+// 20. merged two .pv classes (it happens to all the masters!) and renamed to
+// Eval-principal-var for clarity.
+// 21. Remove eval-container. I get that ozymandias feeling when I look at my
+// abandoned class names.
+// 22. just a note that the meter element needs the webkit suffix to be styled.
+// 23. remove move-button-wrapper & move-button-wrapper button. No ill effects
+// 24. changed gameInfo and gameInfo p to game-info. This will prob change again
+// after InfoCard refactor but for now it's better style.
+// 25. remove display:flex etc from GameHeader, small change but not noticable
+// Time to commit.

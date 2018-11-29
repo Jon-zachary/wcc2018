@@ -124,7 +124,7 @@ class Eval extends Component {
     const moves = this.formatMoves(movesArr);
     return(
     <div className="Eval">
-      <div className="movesTitle">Engine Evaluation</div>
+      <div className="InfoCard-title">Engine Evaluation</div>
       <div className="EvalInfo"
          style={evalInfoStyle}>
         <p>Best move: {this.state.pv.split(' ')[1]}</p>
@@ -137,7 +137,7 @@ class Eval extends Component {
             optimum= "0"
             >
         </meter>
-        <div className="pv">Computer Variation: {moves}</div>
+        <div className="Eval-principal-var">Computer Variation: {moves}</div>
       </div>
       <div className={"InfoCard-button-wrapper"}>
       <button onClick={this.hideEvalFrame}> {hideShowButtonText } </button>
