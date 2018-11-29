@@ -143,3 +143,10 @@ console.log(msToDate(time));
 // at that now. Now none of the anis are working.
 // Problem was that anis were named in removed classes, easy fix. Allows for Better
 // ani names anyway #silverlining.
+
+
+// So step 1 is close enough for jazz. the CSS has been cleaned up, naming conventions
+// are tighter, all around saner so I'm going to go to step 3 first because since
+// I had to ditch the two column approach on the movelist I want to style the moves
+// I think a single StyledMoves component is doable. First step is to gather all 3
+// versions I have working now and see what's diff/same.

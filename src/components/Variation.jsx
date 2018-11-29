@@ -11,9 +11,9 @@ const Variation = (props) => {
     animationName: `${isHiddenClass}`,
   }
 
-  const formatMoves = () => {
+  const formatMoves = (mvs) => {
     const formattedMoves = []
-    varMoves.forEach((m, i) => {
+    mvs.forEach((m, i) => {
       const halfMoveNum = i + start;
       let mvNum = ((halfMoveNum) % 2 === 0) ? `${(halfMoveNum / 2) + 1 }.` : null;
       if (halfMoveNum % 2 === 1 && i === 0) {
@@ -22,7 +22,7 @@ const Variation = (props) => {
       formattedMoves.push(
         <span key={i}>
           {mvNum} {m}
-          {(!mvNum) || (halfMoveNum % 2 === 1 && i === 0)? <br/> : ''}
+          {(halfMoveNum % 2 === 1)? <br/> : ''}
         </span>
       )
     })
@@ -34,7 +34,7 @@ const Variation = (props) => {
       <div className="InfoCard-title">Variation</div>
       <div className="InfoCard-info"
         style={animationStyle}
-        >{formatMoves()}</div>
+        >{formatMoves(varMoves)}</div>
       <div className="InfoCard-button-wrapper">
       <button onClick={props.handleBack}>Back to mainline</button>
       <button onClick={props.hideFrame}>{hideShowButtonText}</button>

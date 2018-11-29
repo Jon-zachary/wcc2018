@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+
+// TODO: bugfix for not displaying black advantage in neg cps. In fact the whole
+// parseEval is kind of foobar. Fixed the negative problem but still unhappy with
+// Engine display.
 class Eval extends Component {
   constructor(props) {
     super(props)
@@ -21,12 +25,10 @@ class Eval extends Component {
     sf.onmessage = (evt) => {
       const ev = evt.data;
       const cp = (this.parseEval(ev).cp) || this.state.cp;
-      const nodes = (this.parseEval(ev).nodes) ? this.parseEval(ev).nodes : this.state.nodes
       const pv = (this.parseEval(ev).pv) ? this.parseEval(ev).pv : this.state.pv
       this.setState({
         raw: ev,
         cp,
-        nodes,
         pv,
       })
     }
@@ -35,7 +37,6 @@ class Eval extends Component {
   resetEval = () => {
     this.setState({
       cp:0,
-      nodes:'Calculating',
       pv:'Calculating'
     })
   }
@@ -47,36 +48,24 @@ class Eval extends Component {
     }
   }
 
-  parseMovesVerbose = () => {
-    const movesV = this.state.movesVerbose.map(mv => {
-      return mv.from+mv.to;
-    });
-    return movesV;
-  }
-
-  formatMoves = (moves) => {
+  formatMoves = (mvs) => {
     const varLength = this.props.varMoves.length;
     const start = this.props.currentMove + varLength;
     const formattedMoves = []
-    let active = 'highlight';
-      moves.forEach((m, i) => {
-        let mvNum = ((start + i + 1) % 2 === 1) ? `${Math.ceil((start + i + 1) / 2)}.` : '';
-        if (i === 0 && start % 2 === 1) mvNum = `${Math.ceil((start + i + 1) / 2)}...`;
-        formattedMoves.push(
-          <span
-            key={i + start}
-            className={(this.props.currentMove === i + 1 + start) ? active : undefined}
-            onClick={(evt) => this.props.handleMoveClick(evt,i + 1 + start)}>
-            {mvNum} {m} {' '}
-          </span>
-        )
-      })
-      return formattedMoves;
-    }
-
-  stopSf = () => {
-    const sf = this.state.sf;
-    sf.postMessage('stop');
+    mvs.forEach((m, i) => {
+      const halfMoveNum = i + start;
+      let mvNum = ((halfMoveNum) % 2 === 0) ? `${(halfMoveNum / 2) + 1 }.` : null;
+      if (halfMoveNum % 2 === 1 && i === 0) {
+        mvNum = `${Math.ceil(i + start / 2)}. \u2026`;
+      }
+      formattedMoves.push(
+        <span key={i}>
+          {mvNum} {m}
+          {(halfMoveNum % 2 === 1)? <br/> : ''}
+        </span>
+      )
+    })
+    return formattedMoves;
   }
 
   startSf = () => {
@@ -93,10 +82,10 @@ class Eval extends Component {
 
   parseEval = (str='') => {
     //regex for centipawn score
-    const cpRE =  /cp (\d+)/;
+    const cpRE =  /cp (.?\d+)/;
     const cpM = str.match(cpRE);
     const cp = (cpM) ? cpM[1] : this.state.cp;
-
+    console.log(cp);
     //regex for pv
     const pvRE = /(?<=pvSan).*?(?=bmc)/
     const pvM = str.match(pvRE);
@@ -128,7 +117,7 @@ class Eval extends Component {
       <div className="InfoCard-info"
          style={animationStyle}>
         <p>Best move: {this.state.pv.split(' ')[1]}</p>
-          <span>score:{(this.state.cp / 100) || 'Calculating'}</span>
+          <span>score:{(this.state.cp / 100)}</span>
           <meter
             title="centipawns"
             value={(this.state.cp) ? this.state.cp / 100 : 0}
@@ -137,7 +126,7 @@ class Eval extends Component {
             optimum= "0"
             >
         </meter>
-        <div className="Eval-principal-var">Computer Variation: {moves}</div>
+        <div className="Eval-principal-var">Computer Variation: {<br/>} {moves}</div>
       </div>
       <div className={"InfoCard-button-wrapper"}>
       <button onClick={this.hideEvalFrame}> {hideShowButtonText } </button>
