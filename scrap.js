@@ -127,3 +127,19 @@ console.log(msToDate(time));
 // after InfoCard refactor but for now it's better style.
 // 25. remove display:flex etc from GameHeader, small change but not noticable
 // Time to commit.
+// 26. On to the tricky stuff. I think I don't need a seperate MoveList and Eval
+// CSS I'm using each twice but one for all 4 should work. Here I go, wish me luck
+// future self!
+// 27. It worked! all info-container-whatevers are now class MoveList. Maybe I should
+// just go all the way and rename it to InfoCard???! not yet, that will be a treat
+// for actually doing the refactoring.
+// 28. again with the insides of the InfoCards there are 4 classes where I think 1 will do
+// gonna give it a shot. Yeah so Movelist-moves works in all 4 spots.
+// 29 Remove EvalInfo, game-info etc. Styling is a little worse but way easier
+// to read/think about.
+// 30. first fuck up. changed everything from MoveList and MoveList-moves to
+// InfoCard and InfoCard info. now variations container is empty. So it's ok that
+// it's empty it's becuase no content initialy but animation not working. looking
+// at that now. Now none of the anis are working.
+// Problem was that anis were named in removed classes, easy fix. Allows for Better
+// ani names anyway #silverlining.

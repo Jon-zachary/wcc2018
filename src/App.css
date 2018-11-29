@@ -108,7 +108,7 @@ button {
   margin: 33%;
 } */
 
-.MoveList {
+.InfoCard {
   display: flex;
   flex-direction: column;
   margin-bottom: 10%;
@@ -116,8 +116,9 @@ button {
   width: 350px;
 }
 
-.MoveList-moves {
+.InfoCard-info {
   width: 350px;
+  height: 100%;
   font-size: 1.25em;
   overflow-y: scroll;
   background-color: #f5f2e9;
@@ -160,19 +161,6 @@ meter::-webkit-meter-optimum-value {
   background-color: White;
 }
 
-.game-info {
-  font-size: 1.25em;
-  font-weight: 500;
-  overflow-y: auto;
-  background-color: #f5f2e9;
-  animation-fill-mode:forwards;
-  animation-duration: 1s;
-}
-
-.game-info p {
-  margin: 10px;
-}
-
 .GameHeader {
   background-color: #b563b2c2;
   border: black solid 1px;
@@ -180,29 +168,6 @@ meter::-webkit-meter-optimum-value {
 
 .GameHeader h2 {
   margin:1px;
-}
-
-.Eval {
-  display: flex;
-  flex-direction: column;
-  height: 200px;
-  width: 350px;
-  margin-bottom: 10%;
-  margin-top:2%;
-}
-
-.EvalInfo {
-  font-size: 1.25em;
-  overflow-y: auto;
-  font-weight: 500;
-  background-color: #f5f2e9;
-  column-rule: solid black 1px;
-  animation-fill-mode: forwards;
-  animation-duration: 1s;
-}
-
-.EvalInfo p {
-  margin-top: 0;
 }
 
 .column {
@@ -220,7 +185,8 @@ meter::-webkit-meter-optimum-value {
     width:100%;
     justify-content: center;
 }
-@keyframes hideEval {
+
+@keyframes hide-InfoCard-info {
   from {
     height: 100%;
   }
@@ -229,25 +195,7 @@ meter::-webkit-meter-optimum-value {
   }
 }
 
-@keyframes showEval {
-  from {
-    height: 0%;
-  }
-  to {
-    height: 100%;
-  }
-}
-
-@keyframes hideMoveList {
-  from {
-    height: 100%;
-  }
-  to {
-    height: 0%;
-  }
-}
-
-@keyframes showMoveList {
+@keyframes show-InfoCard-info {
 
   from {
     height: 0%;

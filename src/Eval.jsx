@@ -111,7 +111,7 @@ class Eval extends Component {
   render() {
     const rawMoves = this.state.pv;
     const movesArr = rawMoves.split(' ')
-    const isHiddenClass = (this.state.isHidden) ? 'hideEval' : 'showEval' ;
+    const isHiddenClass = (this.state.isHidden) ? 'hide-InfoCard-info' : 'show-InfoCard-info' ;
     const hideShowButtonText = (this.state.isHidden) ? 'Show' : 'Hide';
 
     const evalInfoStyle = {
@@ -123,9 +123,9 @@ class Eval extends Component {
     movesArr.shift();
     const moves = this.formatMoves(movesArr);
     return(
-    <div className="Eval">
+    <div className="InfoCard">
       <div className="InfoCard-title">Engine Evaluation</div>
-      <div className="EvalInfo"
+      <div className="InfoCard-info"
          style={evalInfoStyle}>
         <p>Best move: {this.state.pv.split(' ')[1]}</p>
           <span>score:{(this.state.cp / 100) || 'Calculating'}</span>

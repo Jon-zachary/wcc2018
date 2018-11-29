@@ -3,7 +3,7 @@ import React from 'react';
 // TODO: add inc, dec, and move highlighting to variations
 const Variation = (props) => {
   const { varMoves, start, isVarHidden } = props;
-  const isHiddenClass = (isVarHidden) ? 'hideEval' : 'showEval' ;
+  const isHiddenClass = (isVarHidden) ? 'hide-InfoCard-info' : 'show-InfoCard-info' ;
   const hideShowButtonText = (isVarHidden) ? 'Show' : 'Hide';
 
   const evalInfoStyle = {
@@ -30,9 +30,9 @@ const Variation = (props) => {
   }
 
   return (
-    <div className="Eval">
+    <div className="InfoCard">
       <div className="InfoCard-title">Variation</div>
-      <div className="EvalInfo"
+      <div className="InfoCard-info"
         style={evalInfoStyle}
         >{formatMoves()}</div>
       <div className="InfoCard-button-wrapper">

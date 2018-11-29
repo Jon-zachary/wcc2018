@@ -5,16 +5,16 @@ const Info = (props) => {
   // parent is mounted. Maybe can fix in parent.
   const {Round, Black, White, Date, ECO, Result } = props.gameInfo || '';
   const {isInfoHidden, hideInfoFrame} = props
-  const isHiddenClass = (isInfoHidden) ? 'hideEval' : 'showEval' ;
+  const isHiddenClass = (isInfoHidden) ? 'hide-InfoCard-info' : 'show-InfoCard-info' ;
   const hideShowButtonText = (isInfoHidden) ? 'Show' : 'Hide';
   const gameInfoStyle = {
     animationDurration: "1s",
     animationName: `${isHiddenClass}`,
   }
   return(
-    <div className="MoveList">
+    <div className="InfoCard">
       <div className="InfoCard-title">Game Information</div>
-        <div className="game-info"
+        <div className="InfoCard-info"
           style={gameInfoStyle}>
           <p>Event: World Championship</p>
           <p>Date: {Date}</p>

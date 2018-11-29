@@ -4,7 +4,7 @@ const MoveList = (props) => {
 
   const {start, gameInfo, isMovHidden, currentMove, hideMovFrame, moves} = props;
   const result = (gameInfo) ? gameInfo.Result : '';
-  const isHiddenClass = (isMovHidden) ? 'hideMoveList' : 'showMoveList' ;
+  const isHiddenClass = (isMovHidden) ? 'hide-InfoCard-info' : 'show-InfoCard-info' ;
   const hideShowButtonText = (isMovHidden) ? 'Show' : 'Hide';
 
   const movesStyle = {
@@ -36,9 +36,9 @@ const MoveList = (props) => {
 }
 
   return(
-    <div className="MoveList">
+    <div className="InfoCard">
       <div className="InfoCard-title">{props.title}</div>
-      <div className="MoveList-moves"
+      <div className="InfoCard-info"
         style={movesStyle}>
       <span>{formatMoves()} {result}</span>
       </div>
