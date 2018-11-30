@@ -19,7 +19,7 @@ const InfoCard = (props) => {
           {content}
         </div>
       <div className = "InfoCard-button-wrapper">
-        <button onClick={buttonFunctions.hideInfoFrame}>{hideShowButtonText}</button>
+        <button onClick={buttonFunctions.hideFrame}>{hideShowButtonText}</button>
       </div>
     </div>
   )

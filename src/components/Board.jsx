@@ -17,13 +17,13 @@ class Board extends Component {
       isMovHidden:false,
       isInfoHidden: false,
       isVarHidden: false,
+      isEval: false,
       game: null,
       gameInfo: null,
       currentMove: 0,
       moves: [],
       varMoves: [],
       orientation: 'white',
-      isEval: false,
       evalDepth: 5,
       fen: null,
     }
@@ -57,13 +57,6 @@ class Board extends Component {
       varMoves:[],
     })
   }
-
-  handleEval = (e) => {
-    this.setState({
-      isEval: !this.state.isEval,
-    });
-  }
-
 
  handleInc = (e) => {
     const currentMove = this.state.currentMove + 1;
@@ -166,7 +159,7 @@ class Board extends Component {
     })
   }
 
-  hideFrame = () => {
+  hideVarFrame = () => {
     this.setState((prevState) => {
       return {
         isVarHidden: !prevState.isVarHidden,
@@ -190,6 +183,12 @@ class Board extends Component {
     })
   }
 
+  hideEvalFrame = (e) => {
+    this.setState({
+      isEval: !this.state.isEval,
+    });
+  }
+
   render() {
     return (
       <div className="main-body-container">
@@ -199,7 +198,7 @@ class Board extends Component {
           start={this.state.currentMove}
           handleBack={this.handleBackClick}
           isVarHidden={this.state.isVarHidden}
-          hideFrame={this.hideFrame}
+          hideFrame={this.hideVarFrame}
           />
         <MoveList
           moves={this.state.moves}
@@ -236,19 +235,28 @@ class Board extends Component {
         </div>
         </div>
       <div className="column">
-        <Eval
+        <InfoCard
+          title={"Evaluation"}
+          isHidden={this.state.isEval}
+          buttonFunctions={{
+            hideFrame: this.hideEvalFrame,
+          }}
+          content={
+          <Eval
           moves={this.state.moves}
           varMoves={this.state.varMoves}
           fen={this.state.fen}
           currentMove={this.state.currentMove}
           handleMoveClick={this.handleMoveClick}
           />
+        }
+          />
         <InfoCard
           title={"Game Information"}
           content={<Info gameInfo={this.state.gameInfo}/>}
           isHidden={this.state.isInfoHidden}
           buttonFunctions={{
-            hideInfoFrame: this.hideInfoFrame
+            hideFrame: this.hideInfoFrame
           }}
         />
         </div>

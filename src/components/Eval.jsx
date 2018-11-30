@@ -97,22 +97,11 @@ class Eval extends Component {
   render() {
     const rawMoves = this.state.pv;
     const movesArr = rawMoves.split(' ')
-    const isHiddenClass = (this.state.isHidden) ? 'hide-InfoCard-info' : 'show-InfoCard-info' ;
-    const hideShowButtonText = (this.state.isHidden) ? 'Show' : 'Hide';
-
-    const animationStyle = {
-      animationDurration: "1s",
-      animationName: `${isHiddenClass}`,
-    }
-
     movesArr.pop();
     movesArr.shift();
     // const moves = this.formatMoves(movesArr);
     return(
-    <div className="InfoCard">
-      <div className="InfoCard-title">Engine Evaluation</div>
-      <div className="InfoCard-info"
-         style={animationStyle}>
+      <>
         <p>Best move: {this.state.pv.split(' ')[1]}</p>
           <span>score:{(this.state.cp / 100)}</span>
           <meter
@@ -123,17 +112,14 @@ class Eval extends Component {
             optimum= "0"
             >
         </meter>
-        <div className="Eval-principal-var">Computer Variation: {<br/>}
+        <div className="Eval-principal-var">
+          Computer Variation: {<br/>}
           <StyledMoves
             varMoves={movesArr}
             currentMove={this.props.currentMove + this.props.varMoves.length}
             />
         </div>
-      </div>
-      <div className={"InfoCard-button-wrapper"}>
-      <button onClick={this.hideEvalFrame}> {hideShowButtonText } </button>
-      </div>
-    </div>
+        </>
     )
   }
 }
