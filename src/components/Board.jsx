@@ -189,7 +189,7 @@ class Board extends Component {
   render() {
     return (
       <div className="main-body-container">
-        <div className = 'column'>
+        <div className ="column-1">
         <InfoCard
           title={"Variation"}
           isHidden={this.state.isVarHidden}
@@ -222,7 +222,8 @@ class Board extends Component {
       />
 
       </div>
-        <div className = "board-container">
+        <div className="column-2">
+        <div className="board-container">
         <GameHeader
           gameInfo={this.state.gameInfo}
         />
@@ -236,15 +237,16 @@ class Board extends Component {
           width={420}
           onDrop={this.handleDrop}
         />
-      <div className = "board-buttons">
+        <div className = "board-buttons">
           <button onClick={this.handleReset}> Reset</button>
           <button onClick={this.handleDec}> Prev </button>
           <button onClick={this.handleInc}> Next </button>
           <button onClick={this.handleFinal}> Final </button>
           <button onClick={this.handleFlip}>Flip</button>
-      </div>
         </div>
-      <div className="column">
+        </div>
+        </div>
+      <div className="column-3">
         <InfoCard
           title={"Evaluation"}
           isHidden={this.state.isEvalHidden}

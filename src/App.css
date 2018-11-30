@@ -7,52 +7,79 @@
   box-sizing: border-box;
 }
 
+.page-mask {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 25%;
+}
+
 .App {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   background-color:#ffbf007d;
 }
 
+
+
 .Header {
   width: 100%;
+  height: 20vh;
   display: flex;
-  flex-direction: row;
-  flex-wrap:wrap;
   background-color: #6390B5;
-  justify-content: space-around;
+  justify-content: center;
+}
+
+.Player {
+  text-align: center;
+
 }
 
 .Title {
-  display: flex;
-  flex-direction: column;
-  order: 1;
-  font-size: 2em;
-  align-items: center;
   text-align: center;
+  /* flex: 1; */
 }
 
+.fa-3x {
+  position: absolute;
+  left: 2px;
+}
+
+
 .Title p {
-  margin:0 0 10px;
+  font-size: 2em;
+  margin: 1%;
 }
 
 /* Game selection buttons, maybe rename. */
- nav {
-  margin-bottom: 10px;
+nav {
+  position: absolute;
+  display: flex;
+  flex-direction:column;
+  width: 25%;
+  background-color: lightgrey;
+  padding: 10px;
+  justify-content: space-between;
+  z-index: 1000;
+  left: -25%;
+  top: 7vh;
+  opacity: .9;
+  animation-fill-mode:forwards;
+  animation-duration: 2s;
 }
 
 .nav-button {
-  font-size: .75rem;
-  padding: 6px;
+  font-size: 1.25rem;
+  margin: 10px;
+  height: 10%;
 }
 
 /* Having order: 1 on the three children of the header is probably bad.*/
-.Player {
-  order: 1;
-  margin: 0 5%;
-  text-align: center;
-}
+
 
 .Player-name {
   font-size: 1em;
@@ -72,6 +99,7 @@ button {
 
 .main-body-container {
   display:flex;
+  flex-direction: row;
   justify-content: space-around;
   width:100%;
 }
@@ -114,8 +142,8 @@ button {
 .InfoCard {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10%;
-  height: 200px;
+  margin-bottom: 10% 0;
+  height: 30vh;
   width: 350px;
 }
 
@@ -173,10 +201,10 @@ meter::-webkit-meter-optimum-value {
   margin:1px;
 }
 
-.column {
+.column-1, .column-2, .column-3 {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .board-buttons {
@@ -205,5 +233,77 @@ meter::-webkit-meter-optimum-value {
   }
   to {
     height: 100%;
+  }
+}
+
+@keyframes showGameMenu {
+  from {
+    left: -25%;
+  }
+  to {
+    left: 0;
+  }
+}
+
+@keyframes hideGameMenu {
+  from {
+    left: 0;
+  }
+  to {
+    left: -25%;
+  }
+}
+
+@media (width <= 725px) {
+  .Player {
+    display:none;
+  }
+  .Title {
+    display: none;
+  }
+  .Header {
+    Height: 30vh;
+  }
+  nav {
+    height: 100vh;
+    top: 9vh;
+  }
+  .nav-button {
+    font-size: .75rem;
+    margin:0;
+    height: 5%;
+  }
+  .main-body-container {
+    flex-direction: column;
+  }
+  .GameHeader {
+    font-size: .75em;
+  }
+
+  .fa-3x {
+    font-size: 1.25em;
+    left: 10px;
+  }
+  .column-1, .column-2, .column-3 {
+    display: block;
+    background-color: #ffdf82;
+  }
+  .column-1 {
+    order: 2;
+  }
+  .column-3 {
+    order: 3;
+  }
+  .column-2 {
+    margin-top: 730px;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .InfoCard {
+    margin: 10px auto;
   }
 }
