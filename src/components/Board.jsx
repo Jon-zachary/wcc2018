@@ -5,8 +5,9 @@ import MoveList from './MoveList';
 import Info from './Info';
 import GameHeader from './GameHeader';
 import Eval from './Eval';
-import Variation from './Variation'
-import AllGames from '../games/AllGames'
+import Variation from './Variation';
+import InfoCard from './InfoCard';
+import AllGames from '../games/AllGames';
 
 class Board extends Component {
 
@@ -242,11 +243,14 @@ class Board extends Component {
           currentMove={this.state.currentMove}
           handleMoveClick={this.handleMoveClick}
           />
-        <Info
-          gameInfo={this.state.gameInfo}
-          hideInfoFrame={this.hideInfoFrame}
-          isInfoHidden={this.state.isInfoHidden}
-          />
+        <InfoCard
+          title={"Game Information"}
+          content={<Info gameInfo={this.state.gameInfo}/>}
+          isHidden={this.state.isInfoHidden}
+          buttonFunctions={{
+            hideInfoFrame: this.hideInfoFrame
+          }}
+        />
         </div>
       </div>
     );
