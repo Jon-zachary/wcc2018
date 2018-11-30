@@ -9,6 +9,14 @@ const InfoCard = (props) => {
     "animationDurration": "1s",
     "animationName": `${isHiddenClass}`,
   }
+  const buttons = () => {
+    const names = Object.keys(buttonFunctions);
+    const buttons = names.map(name => {
+      const buttonText = (name === 'hide') ? hideShowButtonText : name;
+      return <button key={name} onClick={buttonFunctions[name]}>{buttonText}</button>
+    })
+    return buttons;
+  }
 
   return(
     <div className="InfoCard">
@@ -19,7 +27,7 @@ const InfoCard = (props) => {
           {content}
         </div>
       <div className = "InfoCard-button-wrapper">
-        <button onClick={buttonFunctions.hideFrame}>{hideShowButtonText}</button>
+        {buttons()}
       </div>
     </div>
   )

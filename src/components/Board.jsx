@@ -17,14 +17,13 @@ class Board extends Component {
       isMovHidden:false,
       isInfoHidden: false,
       isVarHidden: false,
-      isEval: false,
+      isEvalHidden: false,
       game: null,
       gameInfo: null,
       currentMove: 0,
       moves: [],
       varMoves: [],
       orientation: 'white',
-      evalDepth: 5,
       fen: null,
     }
   }
@@ -44,16 +43,13 @@ class Board extends Component {
     const pgnString = AllGames[gameNumber - 1]
     game.load_pgn(pgnString);
     const moves = game.history();
-    const movesVerbose = game.history({verbose: true})
     const fen = new Chess().fen();
     this.setState({
       gameInfo: game.header(),
       game,
       moves,
-      movesVerbose,
       fen,
       currentMove: 0,
-      isEval: false,
       varMoves:[],
     })
   }
@@ -185,7 +181,7 @@ class Board extends Component {
 
   hideEvalFrame = (e) => {
     this.setState({
-      isEval: !this.state.isEval,
+      isEvalHidden: !this.state.isEvalHidden,
     });
   }
 
@@ -193,24 +189,37 @@ class Board extends Component {
     return (
       <div className="main-body-container">
         <div className = 'column'>
-        <Variation
-          varMoves={this.state.varMoves}
-          start={this.state.currentMove}
-          handleBack={this.handleBackClick}
-          isVarHidden={this.state.isVarHidden}
-          hideFrame={this.hideVarFrame}
+        <InfoCard
+          title={"Variation"}
+          isHidden={this.state.isVarHidden}
+          content={
+            <Variation
+            varMoves={this.state.varMoves}
+            start={this.state.currentMove}
+            />
+          }
+          buttonFunctions={{
+            'hide': this.hideVarFrame,
+            'Back to Main': this.handleBackClick
+          }}
           />
+        <InfoCard
+          title={"Move List"}
+          isHidden={this.state.isMovHidden}
+          content={
         <MoveList
           moves={this.state.moves}
           handleMoveClick={this.handleMoveClick}
           getResult={this.getResult}
           currentMove={this.state.currentMove}
-          title={"Move List"}
-          showTitle={true}
           gameInfo={this.state.gameInfo}
-          hideMovFrame={this.hideMovFrame}
-          isMovHidden={this.state.isMovHidden}
         />
+      }
+        buttonFunctions={{
+          hide: this.hideMovFrame
+        }}
+      />
+
       </div>
         <div className = "board-container">
         <GameHeader
@@ -232,31 +241,34 @@ class Board extends Component {
           <button onClick={this.handleInc}> Next </button>
           <button onClick={this.handleFinal}> Final </button>
           <button onClick={this.handleFlip}>Flip</button>
-        </div>
+      </div>
         </div>
       <div className="column">
         <InfoCard
           title={"Evaluation"}
-          isHidden={this.state.isEval}
+          isHidden={this.state.isEvalHidden}
           buttonFunctions={{
-            hideFrame: this.hideEvalFrame,
+            'hide': this.hideEvalFrame,
           }}
           content={
-          <Eval
-          moves={this.state.moves}
-          varMoves={this.state.varMoves}
-          fen={this.state.fen}
-          currentMove={this.state.currentMove}
-          handleMoveClick={this.handleMoveClick}
-          />
+            <Eval
+            moves={this.state.moves}
+            varMoves={this.state.varMoves}
+            fen={this.state.fen}
+            currentMove={this.state.currentMove}
+            handleMoveClick={this.handleMoveClick}
+            />
         }
           />
         <InfoCard
           title={"Game Information"}
-          content={<Info gameInfo={this.state.gameInfo}/>}
+          content={
+            <Info gameInfo={this.state.gameInfo}
+              />
+          }
           isHidden={this.state.isInfoHidden}
           buttonFunctions={{
-            hideFrame: this.hideInfoFrame
+            'hide': this.hideInfoFrame
           }}
         />
         </div>
