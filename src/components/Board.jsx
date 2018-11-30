@@ -115,6 +115,7 @@ class Board extends Component {
     })
   }
 
+  // TODO: add support vor variation and eval panes
   handleMoveClick = (evt, index) => {
     const game = new Chess();
     const moves = this.state.moves.slice(0, index);
@@ -256,15 +257,15 @@ class Board extends Component {
             varMoves={this.state.varMoves}
             fen={this.state.fen}
             currentMove={this.state.currentMove}
-            handleMoveClick={this.handleMoveClick}
             />
         }
           />
         <InfoCard
           title={"Game Information"}
           content={
-            <Info gameInfo={this.state.gameInfo}
-              />
+            <Info
+              gameInfo={this.state.gameInfo}
+            />
           }
           isHidden={this.state.isInfoHidden}
           buttonFunctions={{

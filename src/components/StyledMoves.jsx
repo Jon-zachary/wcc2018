@@ -3,7 +3,8 @@ import React from 'react';
 const StyledMoves = (props) => {
     let {mainMoves, varMoves, currentMove: start} = props;
     let currentMove = start;
-    const formattedMoves = [] // for results
+    const handleMoveClick = (props.handleMoveClick) ? props.handleMoveClick : () => '';
+    const formattedMoves = []
     let moves=[];
     if (mainMoves) {
       moves = mainMoves;
@@ -31,7 +32,7 @@ const StyledMoves = (props) => {
       // a new line.
       formattedMoves.push(
         <span key={i}
-        onClick={(evt) => props.handleMoveClick(evt,i + 1)}
+        onClick={(evt) => handleMoveClick(evt,i + 1)}
         >
           {mvNum} <button className={`link-button ${active}`}>{m}</button>
           {(halfMoveNum % 2 === 1) ? <br/> : ''}
