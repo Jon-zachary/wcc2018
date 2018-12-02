@@ -69,7 +69,7 @@ nav {
   top: 7vh;
   opacity: .9;
   animation-fill-mode:forwards;
-  animation-duration: 2s;
+  animation-duration: 1s;
 }
 
 .nav-button {

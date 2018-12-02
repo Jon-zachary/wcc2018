@@ -14,8 +14,10 @@ class App extends Component {
   }
 
   handleGameButton = (e) => {
+  e.preventDefault();
   const gameNumber = +e.target.textContent.split(' ')[1];
    this.setState({
+     isGameList: !this.state.isGameList,
      gameNumber,
    });
   }
@@ -33,6 +35,7 @@ class App extends Component {
         <Header
           handleButton={this.handleGameButton}
           handleMenuClick={this.handleGameList}
+          isGameList={this.state.isGameList}
           />
         <GameList
           handleButton={this.handleGameButton}
