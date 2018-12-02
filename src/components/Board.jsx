@@ -191,20 +191,6 @@ class Board extends Component {
       <div className="main-body-container">
         <div className ="column-1">
         <InfoCard
-          title={"Variation"}
-          isHidden={this.state.isVarHidden}
-          content={
-            <Variation
-            varMoves={this.state.varMoves}
-            start={this.state.currentMove}
-            />
-          }
-          buttonFunctions={{
-            'hide': this.hideVarFrame,
-            'Back to Main': this.handleBackClick
-          }}
-          />
-        <InfoCard
           title={"Move List"}
           isHidden={this.state.isMovHidden}
           content={
@@ -220,6 +206,20 @@ class Board extends Component {
           hide: this.hideMovFrame
         }}
       />
+      <InfoCard
+        title={"Variation"}
+        isHidden={this.state.isVarHidden}
+        content={
+          <Variation
+          varMoves={this.state.varMoves}
+          start={this.state.currentMove}
+          />
+        }
+        buttonFunctions={{
+          'hide': this.hideVarFrame,
+          'Back to Main': this.handleBackClick
+        }}
+        />
 
       </div>
         <div className="column-2">

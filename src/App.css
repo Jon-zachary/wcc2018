@@ -266,7 +266,7 @@ meter::-webkit-meter-optimum-value {
   }
   nav {
     height: 100vh;
-    top: 9vh;
+    top: 2.75vh;
   }
   .nav-button {
     font-size: .75rem;
@@ -296,6 +296,9 @@ meter::-webkit-meter-optimum-value {
   }
   .column-2 {
     margin-top: 730px;
+  }
+  .board-container {
+    margin-top: 0;
   }
 
   body {
