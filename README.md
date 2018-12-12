@@ -1,5 +1,5 @@
 # WCC 2018 game tracker
-
+[Fide Chess World Championship 2018](fidewcc2018.now.sh)
 ## What it's about
 This is a React.js application that allows users to view the games from the recent (2018) Fide
 world chess championship. It stores the games as pgn(portable game notation)
